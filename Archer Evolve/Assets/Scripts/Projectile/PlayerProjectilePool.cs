@@ -22,7 +22,7 @@ public class PlayerProjectilePool : MonoBehaviour
         for (int i = 0; i < maxProjectileNumber; i++)
         {
             GameObject projectile = Instantiate(projectilePrefab);
-            projectile.transform.parent = transform;
+            projectile.transform.parent = GameObject.FindGameObjectWithTag("Player Projectile").transform;
             projectile.SetActive(false);
             playerProjectilePool.Add(projectile);
 

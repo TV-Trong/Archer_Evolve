@@ -29,9 +29,19 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
 
     private void Update()
     {
-        moveInput = movingAction.action.ReadValue<Vector2>();
+        GetMoveInput();
+        InitiateAttack();
+    }
 
-        if (attackTimer > 0f )
+    public Vector2 GetMoveInput()
+    {
+        moveInput = movingAction.action.ReadValue<Vector2>();
+        return moveInput;
+    }
+
+    private void InitiateAttack()
+    {
+        if (attackTimer > 0f)
         {
             attackTimer -= Time.deltaTime;
         }
@@ -57,5 +67,12 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
         GameObject projectile = PlayerProjectilePool.instance.PlayerGetPooledProjectile();
         projectile.transform.position = shooterTransform.position;
         projectile.SetActive(true);
+    }
+
+    public static Vector2 GetMousePositionOnScreen()
+    {
+        Vector2 getMousePosition = Input.mousePosition;
+        Vector2 getMouseWorldPosition = Camera.main.ScreenToWorldPoint(getMousePosition);
+        return getMouseWorldPosition;
     }
 }
