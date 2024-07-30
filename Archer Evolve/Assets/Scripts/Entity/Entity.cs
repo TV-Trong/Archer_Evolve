@@ -5,4 +5,5 @@ using UnityEngine;
 public interface IEntity
 {
     void Moving(Vector2 moveInput);
+    void Attack();
 }
