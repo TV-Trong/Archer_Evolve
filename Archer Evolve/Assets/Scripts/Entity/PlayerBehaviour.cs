@@ -13,11 +13,10 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     private float moveSpeed = 300f;
     private Vector2 moveInput;
 
-    [SerializeField] 
-    private float attackTimer = 1f;
+    [SerializeField]
     private float initAttackTimer;
-    public GameObject projectile;
-    public Transform originPosition;
+    private float attackTimer = 1f;
+    public Transform shooterTransform;
     private void Awake()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -25,7 +24,7 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
 
     private void Start()
     {
-        initAttackTimer = attackTimer;
+        attackTimer = initAttackTimer;
     }
 
     private void Update()
@@ -55,6 +54,8 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
 
     public void Attack()
     {
-        Instantiate(projectile, originPosition.position, Quaternion.identity);
+        GameObject projectile = PlayerProjectilePool.instance.PlayerGetPooledProjectile();
+        projectile.transform.position = shooterTransform.position;
+        projectile.SetActive(true);
     }
 }

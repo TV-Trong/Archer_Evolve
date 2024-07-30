@@ -8,6 +8,8 @@ public interface IProjectile
     float lifetime { get; set; }
     GameObject projectilePrefab { get; set; }
     Rigidbody2D rigidBody { get; set; }
+    
+    void FlyToDirection(Vector2 shooterOriginPosition, Vector2 trajectoryDirection);
+    IEnumerator DeactivateProjectile();
 
-    void FlyToDirection(Vector2 origin, Vector2 direction);
 }
