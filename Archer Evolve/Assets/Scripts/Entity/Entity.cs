@@ -4,6 +4,12 @@ using UnityEngine;
 
 public interface IEntity
 {
+    float moveSpeed {  get; set; }
+    int healthPoint {  get; set; }
+    int strength {  get; set; }
+    float attackSpeed {  get; set; }
+
     void Moving(Vector2 moveInput);
     void Attack();
+    void TakeDamge(int strength);
 }

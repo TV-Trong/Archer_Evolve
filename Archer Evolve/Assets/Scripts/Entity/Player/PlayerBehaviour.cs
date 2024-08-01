@@ -5,33 +5,43 @@ using UnityEngine.InputSystem;
 
 public class PlayerBehaviour : MonoBehaviour, IEntity
 {
-    [SerializeField] 
-    private InputActionReference movingAction;
-    private Rigidbody2D myRigidbody;
+    [SerializeField] private InputActionReference movingAction;
+    [SerializeField] private Transform shooterTransform;
 
-    [SerializeField] 
-    private float moveSpeed = 300f;
+    [field: Header("My Stat")]
+    [field: SerializeField] public float moveSpeed { get; set; }
+    [field: SerializeField] public int healthPoint { get; set; }
+    [field: SerializeField] public int strength { get; set; }
+    [field: SerializeField] public float attackSpeed { get; set; }
+
+    private Rigidbody2D myRigidbody;
+    private float baseMoveSpeed;
+    private int maxHP;
+    private int baseStrength;
+    private float baseAttackSpeed;
+    private float attackTimer;
     private Vector2 moveInput;
 
-    [SerializeField]
-    private float initAttackTimer;
-    private float attackTimer = 1f;
-    public Transform shooterTransform;
     private void Awake()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
-    }
 
-    private void Start()
-    {
-        attackTimer = initAttackTimer;
+        baseMoveSpeed = moveSpeed;
+        maxHP = healthPoint;
+        baseStrength = strength;
+        baseAttackSpeed = attackSpeed;
+        attackTimer = attackSpeed;
     }
 
     private void Update()
     {
         moveInput = movingAction.action.ReadValue<Vector2>();
-
         InitiateAttack();
+    }
+
+    private void FixedUpdate()
+    {
+        Moving(moveInput);
     }
 
     public Vector2 GetMoveInput()
@@ -47,15 +57,11 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
         }
         else
         {
-            attackTimer = initAttackTimer;
+            attackTimer = attackSpeed;
             Attack();
         }
     }
 
-    private void FixedUpdate()
-    {
-        Moving(moveInput);
-    }
 
     public void Moving(Vector2 moveInput)
     {
@@ -74,5 +80,11 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
         Vector2 getMousePosition = Input.mousePosition;
         Vector2 getMouseWorldPosition = Camera.main.ScreenToWorldPoint(getMousePosition);
         return getMouseWorldPosition;
+    }
+
+    public void TakeDamge(int strength)
+    {
+        healthPoint -= strength;
+        Debug.Log($"My HP: {healthPoint}");
     }
 }
