@@ -29,13 +29,13 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
 
     private void Update()
     {
-        GetMoveInput();
+        moveInput = movingAction.action.ReadValue<Vector2>();
+
         InitiateAttack();
     }
 
     public Vector2 GetMoveInput()
     {
-        moveInput = movingAction.action.ReadValue<Vector2>();
         return moveInput;
     }
 
