@@ -7,6 +7,13 @@ public class BowBehaviour : MonoBehaviour
     [SerializeField]
     private Transform playerTransform;
     private Vector2 getMouseWorldPosition;
+    private PlayerBehaviour playerBehaviour;
+
+    private void Awake()
+    {
+        playerBehaviour = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerBehaviour>();
+    }
+    
     private void Update()
     {
         SpinToCursor(GetDirectionToAim());
@@ -22,7 +29,7 @@ public class BowBehaviour : MonoBehaviour
     private Vector2 GetDirectionToAim()
     {
         Vector2 myPosition = transform.position;
-        getMouseWorldPosition = PlayerBehaviour.GetMousePositionOnScreen();
+        getMouseWorldPosition = playerBehaviour.GetMousePositionOnScreen();
         return (getMouseWorldPosition - myPosition).normalized;
     }
 

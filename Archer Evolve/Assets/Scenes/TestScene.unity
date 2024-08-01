@@ -237,10 +237,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movingAction: {fileID: 555381290488344010, guid: 2f37f4ee6baaceb48bf10df5c8fc0bb1, type: 3}
   shooterTransform: {fileID: 1793258775}
-  <moveSpeed>k__BackingField: 300
+  <moveSpeed>k__BackingField: 100
   <healthPoint>k__BackingField: 100
   <strength>k__BackingField: 10
   <attackSpeed>k__BackingField: 1
+  baseMoveSpeed: 0
 --- !u!95 &397452036
 Animator:
   serializedVersion: 5

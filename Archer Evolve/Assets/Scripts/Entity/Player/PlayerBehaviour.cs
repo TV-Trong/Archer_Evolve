@@ -15,12 +15,13 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     [field: SerializeField] public float attackSpeed { get; set; }
 
     private Rigidbody2D myRigidbody;
-    private float baseMoveSpeed;
     private int maxHP;
     private int baseStrength;
     private float baseAttackSpeed;
     private float attackTimer;
     private Vector2 moveInput;
+
+    [HideInInspector] public float baseMoveSpeed;
 
     private void Awake()
     {
@@ -75,7 +76,7 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
         projectile.SetActive(true);
     }
 
-    public static Vector2 GetMousePositionOnScreen()
+    public Vector2 GetMousePositionOnScreen()
     {
         Vector2 getMousePosition = Input.mousePosition;
         Vector2 getMouseWorldPosition = Camera.main.ScreenToWorldPoint(getMousePosition);
@@ -85,6 +86,5 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     public void TakeDamge(int strength)
     {
         healthPoint -= strength;
-        Debug.Log($"My HP: {healthPoint}");
     }
 }

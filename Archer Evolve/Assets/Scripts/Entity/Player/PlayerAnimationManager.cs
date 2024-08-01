@@ -22,14 +22,14 @@ public class PlayerAnimationManager : MonoBehaviour
 
     private void AdjustAnimationSpeed()
     {
-        if (playerBehaviour.GetMoveInput() != Vector2.zero) playerAnimator.speed = 1f;
-        else playerAnimator.speed = 0f;
+        if (playerBehaviour.GetMoveInput() != Vector2.zero) playerAnimator.speed = playerBehaviour.moveSpeed / playerBehaviour.baseMoveSpeed;
+        else playerAnimator.speed = 0;
     }
 
     private void FlipMySprite()
     {
         Transform playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-        Vector2 getMouseWorldPosition = PlayerBehaviour.GetMousePositionOnScreen();
+        Vector2 getMouseWorldPosition = playerBehaviour.GetMousePositionOnScreen();
         playerTransform.localScale = (getMouseWorldPosition.x - transform.position.x < -0.1f) ? new Vector3(-1, 1, 1) : Vector3.one;
     }
 }

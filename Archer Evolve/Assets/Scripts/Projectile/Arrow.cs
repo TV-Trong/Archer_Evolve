@@ -11,12 +11,15 @@ public class Arrow : MonoBehaviour, IProjectile
     public Rigidbody2D rigidBody { get; set; }
     public GameObject playerGameOject { get; set; }
 
+    private PlayerBehaviour playerBehaviour;
+
     private void OnEnable()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         playerGameOject = GameObject.FindGameObjectWithTag("Player");
+        playerBehaviour = playerGameOject.GetComponent<PlayerBehaviour>();
 
-        Vector2 getMouseWorldPosition = PlayerBehaviour.GetMousePositionOnScreen();
+        Vector2 getMouseWorldPosition = playerBehaviour.GetMousePositionOnScreen();
         Vector2 shooterOriginPosition = GameObject.Find("Projectile Shooter").transform.position;
         Vector2 trajectoryDirection = (getMouseWorldPosition - shooterOriginPosition).normalized;
 
