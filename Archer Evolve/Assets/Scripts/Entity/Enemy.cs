@@ -19,6 +19,8 @@ public class Enemy : MonoBehaviour, IEntity
     private float baseAttackSpeed;
     private float attackTimer;
     private bool isPlayerInAttackRange = false;
+    private Coroutine myCoroutine;
+    [SerializeField] private float knockbackValue;
 
     private void Awake()
     {
@@ -54,6 +56,27 @@ public class Enemy : MonoBehaviour, IEntity
         {
             isPlayerInAttackRange = true;
         }
+
+        if (collision.CompareTag("PlayerProjectile"))
+        {
+            if (myCoroutine != null) StopCoroutine(myCoroutine);
+            KnockbackCalculation(collision);
+        }
+    }
+
+    private void KnockbackCalculation(Collider2D collision)
+    {
+        Vector2 playerPosition = playerBehaviour.transform.position;
+        Vector2 myPosition = transform.position;
+        Vector2 knockbackDirection = (myPosition - playerPosition).normalized;
+        myRigidbody.AddForce(knockbackDirection * 2f, ForceMode2D.Impulse);
+        myCoroutine = StartCoroutine(KnockbackTime(knockbackValue));
+    }
+
+    private IEnumerator KnockbackTime(float time)
+    {
+        yield return new WaitForSeconds(time);
+        myRigidbody.velocity = Vector2.zero;
     }
 
     private void OnTriggerExit2D(Collider2D collision)
