@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <speed>k__BackingField: 20
-  <lifetime>k__BackingField: 3
+  <lifetime>k__BackingField: 0.8
   <projectilePrefab>k__BackingField: {fileID: 7288007452565994702}
   <quality>k__BackingField: 5
 --- !u!212 &1718813920192907503

@@ -21,6 +21,8 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     private float attackTimer;
     private Vector2 moveInput;
 
+    public static PlayerBehaviour instance;
+
     [HideInInspector] public float baseMoveSpeed;
 
     private void Awake()
@@ -32,6 +34,8 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
         baseStrength = strength;
         baseAttackSpeed = attackSpeed;
         attackTimer = attackSpeed;
+
+        if (instance == null) instance = this;
     }
 
     private void Update()

@@ -20,7 +20,7 @@ public class Arrow : MonoBehaviour, IProjectile
         playerBehaviour = playerGameOject.GetComponent<PlayerBehaviour>();
 
         Vector2 getMouseWorldPosition = playerBehaviour.GetMousePositionOnScreen();
-        Vector2 shooterOriginPosition = GameObject.Find("Projectile Shooter").transform.position;
+        Vector2 shooterOriginPosition = GameObject.Find("Weapon").transform.position;
         Vector2 trajectoryDirection = (getMouseWorldPosition - shooterOriginPosition).normalized;
 
         FlyToDirection(shooterOriginPosition, trajectoryDirection);

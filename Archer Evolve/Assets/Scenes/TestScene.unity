@@ -17317,7 +17317,7 @@ GameObject:
   - component: {fileID: 646085262}
   - component: {fileID: 646085264}
   m_Layer: 0
-  m_Name: Grid
+  m_Name: Map Grid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -38818,6 +38818,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1747515645}
   - component: {fileID: 1747515646}
+  - component: {fileID: 1747515647}
   m_Layer: 3
   m_Name: Hitbox
   m_TagString: Untagged
@@ -38842,6 +38843,41 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!70 &1747515646
 CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1747515644}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.35}
+  m_Size: {x: 0.32, y: 0.6}
+  m_Direction: 0
+--- !u!58 &1747515647
+CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -38873,8 +38909,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0.35}
-  m_Size: {x: 0.32, y: 0.6}
-  m_Direction: 0
+  serializedVersion: 2
+  m_Radius: 0.25
 --- !u!1 &1793258774
 GameObject:
   m_ObjectHideFlags: 0
@@ -38887,7 +38923,7 @@ GameObject:
   - component: {fileID: 1793258776}
   - component: {fileID: 1793258777}
   m_Layer: 3
-  m_Name: Projectile Shooter
+  m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

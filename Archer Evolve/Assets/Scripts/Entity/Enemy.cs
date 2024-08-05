@@ -11,8 +11,8 @@ public class Enemy : MonoBehaviour, IEntity
     [field: SerializeField] public float attackSpeed { get; set; }
 
     private Rigidbody2D myRigidbody;
-    private GameObject playerGameObject;
     private PlayerBehaviour playerBehaviour;
+    private CircleCollider2D playerHitbox;
     private float baseMoveSpeed;
     private int maxHP;
     private int baseStrength;
@@ -22,9 +22,9 @@ public class Enemy : MonoBehaviour, IEntity
 
     private void Awake()
     {
-        myRigidbody = GetComponent<Rigidbody2D>();  
-        playerGameObject = GameObject.FindGameObjectWithTag("Player");
-        playerBehaviour = playerGameObject.GetComponent<PlayerBehaviour>();
+        myRigidbody = GetComponent<Rigidbody2D>();
+        playerBehaviour = PlayerBehaviour.instance;
+        playerHitbox = PlayerBehaviour.instance.GetComponentInChildren<CircleCollider2D>();
 
         baseMoveSpeed = moveSpeed;
         maxHP = healthPoint;
@@ -46,7 +46,7 @@ public class Enemy : MonoBehaviour, IEntity
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision == playerHitbox)
         {
             isPlayerInAttackRange = true;
         }
@@ -54,7 +54,7 @@ public class Enemy : MonoBehaviour, IEntity
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision == playerHitbox)
         {
             isPlayerInAttackRange = false;
         }
@@ -75,7 +75,7 @@ public class Enemy : MonoBehaviour, IEntity
 
     private void FollowPlayer()
     {
-        Vector2 playerPosition = playerGameObject.transform.position;
+        Vector2 playerPosition = playerBehaviour.transform.position;
         Vector2 moveInput = Vector2.MoveTowards(transform.position, playerPosition, moveSpeed * Time.deltaTime);
         Moving(moveInput);
     }
