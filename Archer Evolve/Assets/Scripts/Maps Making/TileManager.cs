@@ -5,7 +5,6 @@ using UnityEngine;
 public class TileManager : MonoBehaviour
 {
     private GameObject playerGameOject;
-    public List<GameObject> tileObjects;
 
     private void Awake()
     {

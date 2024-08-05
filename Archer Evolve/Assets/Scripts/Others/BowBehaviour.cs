@@ -8,6 +8,7 @@ public class BowBehaviour : MonoBehaviour
     private Transform playerTransform;
     private Vector2 getMouseWorldPosition;
     private PlayerBehaviour playerBehaviour;
+    
 
     private void Awake()
     {
@@ -22,8 +23,7 @@ public class BowBehaviour : MonoBehaviour
 
     private void FlipMySprite()
     {
-        float myScaleX = playerTransform.localScale.x;
-        transform.localScale = new Vector3(myScaleX, 1, 1);
+        transform.localScale = new Vector3(playerTransform.localScale.x, 1, 1);
     }
 
     private Vector2 GetDirectionToAim()

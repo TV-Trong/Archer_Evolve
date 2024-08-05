@@ -7,7 +7,7 @@ public class Enemy : MonoBehaviour, IEntity
     [field: Header("My Stat")]
     [field: SerializeField] public float moveSpeed { get; set; }
     [field: SerializeField] public int healthPoint { get; set; }
-    [field: SerializeField] public int strength { get; set; }
+    [field: SerializeField] public float strength { get; set; }
     [field: SerializeField] public float attackSpeed { get; set; }
 
     private Rigidbody2D myRigidbody;
@@ -15,7 +15,7 @@ public class Enemy : MonoBehaviour, IEntity
     private CircleCollider2D playerHitbox;
     private float baseMoveSpeed;
     private int maxHP;
-    private int baseStrength;
+    private float baseStrength;
     private float baseAttackSpeed;
     private float attackTimer;
     private bool isPlayerInAttackRange = false;
@@ -23,14 +23,18 @@ public class Enemy : MonoBehaviour, IEntity
     private void Awake()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
-        playerBehaviour = PlayerBehaviour.instance;
-        playerHitbox = PlayerBehaviour.instance.GetComponentInChildren<CircleCollider2D>();
 
         baseMoveSpeed = moveSpeed;
         maxHP = healthPoint;
         baseStrength = strength;
         baseAttackSpeed = attackSpeed;
         attackTimer = 0;
+    }
+
+    private void Start()
+    {
+        playerBehaviour = PlayerBehaviour.instance;
+        playerHitbox = PlayerBehaviour.instance.GetComponentInChildren<CircleCollider2D>();
     }
 
     private void Update()
@@ -83,6 +87,7 @@ public class Enemy : MonoBehaviour, IEntity
     public void Attack()
     {
         playerBehaviour.TakeDamge(strength);
+        Debug.LogWarning($"Player takes: {strength} Float Damage!");
     }
 
     public void Moving(Vector2 moveInput)
@@ -90,8 +95,9 @@ public class Enemy : MonoBehaviour, IEntity
         transform.position = moveInput;
     }
 
-    public void TakeDamge(int strength)
+    public void TakeDamge(float strength)
     {
-        healthPoint -= strength;
+        healthPoint -= (int)strength;
+        Debug.LogWarning($"Enemy takes: {(int)strength} Actual Damage!");
     }
 }

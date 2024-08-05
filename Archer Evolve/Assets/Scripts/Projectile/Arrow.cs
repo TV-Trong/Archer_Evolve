@@ -4,32 +4,31 @@ using UnityEngine;
 
 public class Arrow : MonoBehaviour, IProjectile
 {
-    [field: SerializeField] public float speed { get; set; } = 8f;
+    [field: SerializeField] public float velocity { get; set; }
     [field: SerializeField] public float lifetime { get; set; }
     [field: SerializeField] public GameObject projectilePrefab { get; set; }
-    [field: SerializeField] public int quality { get; set; }
+    [field: SerializeField] public float projectileDamage { get; set; }
     public Rigidbody2D rigidBody { get; set; }
-    public GameObject playerGameOject { get; set; }
+    public PlayerBehaviour playerInstance { get; set; }
 
-    private PlayerBehaviour playerBehaviour;
+    private PickingWeapon pickedWeapon;
+
+    private void Awake()
+    {
+        rigidBody = GetComponent<Rigidbody2D>();
+        pickedWeapon = FindObjectOfType<PickingWeapon>();
+        WeaponPullPowerToVelocity();
+    }
 
     private void OnEnable()
     {
-        rigidBody = GetComponent<Rigidbody2D>();
-        playerGameOject = GameObject.FindGameObjectWithTag("Player");
-        playerBehaviour = playerGameOject.GetComponent<PlayerBehaviour>();
+        playerInstance = PlayerBehaviour.instance;
 
-        Vector2 getMouseWorldPosition = playerBehaviour.GetMousePositionOnScreen();
-        Vector2 shooterOriginPosition = GameObject.Find("Weapon").transform.position;
-        Vector2 trajectoryDirection = (getMouseWorldPosition - shooterOriginPosition).normalized;
+        Vector2 weaponPosition = (Vector2)playerInstance.transform.position + new Vector2(0.1f, 0.32f);
+        Vector2 getMouseWorldPosition = playerInstance.GetMousePositionOnScreen();
+        Vector2 trajectoryDirection = (getMouseWorldPosition - weaponPosition).normalized;
 
-        FlyToDirection(shooterOriginPosition, trajectoryDirection);
-    }
-
-    private int CalculatedDamage()
-    {
-        PlayerBehaviour playerBehaviour = playerGameOject.GetComponent<PlayerBehaviour>();
-        return playerBehaviour.strength + quality;
+        FlyToDirection(weaponPosition, trajectoryDirection);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -38,13 +37,29 @@ public class Arrow : MonoBehaviour, IProjectile
         {
             Enemy enemy = collision.GetComponent<Enemy>();
             enemy.TakeDamge(CalculatedDamage());
+
+            Debug.LogWarning($"Enemy takes: {CalculatedDamage()} Float Damage!");
+
             gameObject.SetActive(false);
         }
     }
 
+    private void WeaponPullPowerToVelocity()
+    {
+        float pullPowerToProjectileVelocity;
+        if (pickedWeapon.myWeapon.pullPower < 40) pullPowerToProjectileVelocity = pickedWeapon.myWeapon.pullPower / 5;
+        else pullPowerToProjectileVelocity = pickedWeapon.myWeapon.pullPower * 10 / 100 + 1;
+        velocity += pullPowerToProjectileVelocity;
+    }
+
+    private float CalculatedDamage()
+    {
+        return (playerInstance.strength + projectileDamage);
+    }
+
     public void FlyToDirection(Vector2 origin, Vector2 direction)
     {
-        rigidBody.velocity = direction * speed;
+        rigidBody.velocity = direction * velocity;
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         StartCoroutine(DeactivateProjectile());

@@ -4326,7 +4326,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a81c47ec5a1990469119b12c16c28d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileObjects: []
 --- !u!1 &266396491
 GameObject:
   m_ObjectHideFlags: 0
@@ -8530,7 +8529,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a81c47ec5a1990469119b12c16c28d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileObjects: []
 --- !u!1 &397452029
 GameObject:
   m_ObjectHideFlags: 0
@@ -8645,7 +8643,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movingAction: {fileID: 555381290488344010, guid: 2f37f4ee6baaceb48bf10df5c8fc0bb1, type: 3}
   shooterTransform: {fileID: 1793258775}
-  <moveSpeed>k__BackingField: 300
+  <moveSpeed>k__BackingField: 150
   <healthPoint>k__BackingField: 100
   <strength>k__BackingField: 10
   <attackSpeed>k__BackingField: 1
@@ -12909,7 +12907,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a81c47ec5a1990469119b12c16c28d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileObjects: []
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -17240,7 +17237,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a81c47ec5a1990469119b12c16c28d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileObjects: []
 --- !u!1 &554144380
 GameObject:
   m_ObjectHideFlags: 0
@@ -21574,7 +21570,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a81c47ec5a1990469119b12c16c28d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileObjects: []
 --- !u!1 &724070623
 GameObject:
   m_ObjectHideFlags: 0
@@ -25863,7 +25858,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a81c47ec5a1990469119b12c16c28d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileObjects: []
 --- !u!1 &1174874108
 GameObject:
   m_ObjectHideFlags: 0
@@ -30067,7 +30061,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a81c47ec5a1990469119b12c16c28d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileObjects: []
 --- !u!1 &1181331650
 GameObject:
   m_ObjectHideFlags: 3
@@ -34359,7 +34352,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a81c47ec5a1990469119b12c16c28d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileObjects: []
 --- !u!1 &1354535353
 GameObject:
   m_ObjectHideFlags: 0
@@ -34405,7 +34397,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 7288007452565994702, guid: 6731227282f152f4c834eabe99da5bb2, type: 3}
-  parentObjectHolder: {fileID: 626093096}
+  playerProjectileHolder: {fileID: 0}
   maxProjectileNumber: 100
 --- !u!1 &1460179310
 GameObject:
@@ -38807,7 +38799,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a81c47ec5a1990469119b12c16c28d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileObjects: []
 --- !u!1 &1747515644
 GameObject:
   m_ObjectHideFlags: 0
@@ -38922,6 +38913,7 @@ GameObject:
   - component: {fileID: 1793258775}
   - component: {fileID: 1793258776}
   - component: {fileID: 1793258777}
+  - component: {fileID: 1793258778}
   m_Layer: 3
   m_Name: Weapon
   m_TagString: Untagged
@@ -38986,7 +38978,7 @@ SpriteRenderer:
   m_SortingLayerID: -1647122409
   m_SortingLayer: 1
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 73dba921d881432409dc00737df1fec9, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -38994,7 +38986,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 1
 --- !u!114 &1793258777
@@ -39010,6 +39002,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerTransform: {fileID: 397452031}
+--- !u!114 &1793258778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793258774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed3e2f8471ef8784299594c725bbfc2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myWeapon: {fileID: 11400000, guid: e50bf70a20f7da441a408eed59cde316, type: 2}
 --- !u!1 &1853459586
 GameObject:
   m_ObjectHideFlags: 0

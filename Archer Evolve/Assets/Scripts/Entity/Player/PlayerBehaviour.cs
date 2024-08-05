@@ -5,28 +5,31 @@ using UnityEngine.InputSystem;
 
 public class PlayerBehaviour : MonoBehaviour, IEntity
 {
+    public static PlayerBehaviour instance;
+
     [SerializeField] private InputActionReference movingAction;
     [SerializeField] private Transform shooterTransform;
 
     [field: Header("My Stat")]
     [field: SerializeField] public float moveSpeed { get; set; }
     [field: SerializeField] public int healthPoint { get; set; }
-    [field: SerializeField] public int strength { get; set; }
+    [field: SerializeField] public float strength { get; set; }
     [field: SerializeField] public float attackSpeed { get; set; }
 
+    [HideInInspector] public float baseMoveSpeed;
     private Rigidbody2D myRigidbody;
     private int maxHP;
-    private int baseStrength;
+    private float baseStrength;
     private float baseAttackSpeed;
     private float attackTimer;
     private Vector2 moveInput;
 
-    public static PlayerBehaviour instance;
-
-    [HideInInspector] public float baseMoveSpeed;
-
+    private Vector2 getMousePosition;
+    private Vector2 getMouseWorldPosition;
     private void Awake()
     {
+        if (instance == null) instance = this;
+
         myRigidbody = GetComponent<Rigidbody2D>();
 
         baseMoveSpeed = moveSpeed;
@@ -35,7 +38,10 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
         baseAttackSpeed = attackSpeed;
         attackTimer = attackSpeed;
 
-        if (instance == null) instance = this;
+        Debug.LogWarning("Before weapon distribute stats");
+        Debug.Log($"Speed = {baseMoveSpeed}");
+        Debug.Log($"Strength = {baseStrength}");
+        Debug.Log($"Attack Speed = {baseAttackSpeed}");
     }
 
     private void Update()
@@ -67,7 +73,6 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
         }
     }
 
-
     public void Moving(Vector2 moveInput)
     {
         myRigidbody.velocity = moveInput * moveSpeed * Time.deltaTime;
@@ -87,8 +92,10 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
         return getMouseWorldPosition;
     }
 
-    public void TakeDamge(int strength)
+    public void TakeDamge(float strength)
     {
-        healthPoint -= strength;
+        healthPoint -= (int)strength;
+        Debug.LogWarning($"Enemy takes: {(int)strength} Actual Damage!");
+        Debug.Log($"Player HP = {healthPoint}");
     }
 }

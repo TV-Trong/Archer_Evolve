@@ -7,7 +7,7 @@ public class PlayerProjectilePool : MonoBehaviour
     public static PlayerProjectilePool instance;
 
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private Transform parentObjectHolder;
+    [SerializeField] private Transform playerProjectileHolder;
     [SerializeField] private int maxProjectileNumber;
     private List<GameObject> playerProjectilePool = new List<GameObject>();
 
@@ -21,7 +21,7 @@ public class PlayerProjectilePool : MonoBehaviour
         for (int i = 0; i < maxProjectileNumber; i++)
         {
             GameObject projectile = Instantiate(projectilePrefab);
-            projectile.transform.parent = parentObjectHolder;
+            projectile.transform.parent = playerProjectileHolder;
             projectile.SetActive(false);
             playerProjectilePool.Add(projectile);
 
