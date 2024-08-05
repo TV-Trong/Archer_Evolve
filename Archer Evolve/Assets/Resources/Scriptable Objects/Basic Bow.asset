@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Basic Bow
   m_EditorClassIdentifier: 
   weaponName: Basic Bow
-  weaponDamage: 10
   weaponFireRate: 1
   pullPower: 15
-  weight: 30
+  weight: 10
   weaponSprite: {fileID: 21300000, guid: 73dba921d881432409dc00737df1fec9, type: 3}
