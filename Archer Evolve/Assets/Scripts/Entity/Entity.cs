@@ -8,8 +8,11 @@ public interface IEntity
     int healthPoint {  get; set; }
     float strength {  get; set; }
     float attackSpeed {  get; set; }
+    GameObject popupDamage { get; set; }
+    Transform popupDamagePosition { get; set; }
 
     void Moving(Vector2 moveInput);
     void Attack();
     void TakeDamge(float strength);
+    void ShowPopupDamage(float strength);
 }

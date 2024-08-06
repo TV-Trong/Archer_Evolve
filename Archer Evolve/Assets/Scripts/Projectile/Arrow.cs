@@ -50,11 +50,13 @@ public class Arrow : MonoBehaviour, IProjectile
         if (pickedWeapon.myWeapon.pullPower < 40) pullPowerToProjectileVelocity = pickedWeapon.myWeapon.pullPower / 5;
         else pullPowerToProjectileVelocity = pickedWeapon.myWeapon.pullPower * 10 / 100 + 1;
         velocity += pullPowerToProjectileVelocity;
+        Mathf.Clamp(velocity, 10, 50);
     }
 
     private float CalculatedDamage()
     {
-        return (playerInstance.strength + projectileDamage);
+        float rollDamageRange = Random.Range(0.8f, 1.2f);
+        return (playerInstance.strength + projectileDamage) * rollDamageRange;
     }
 
     public void FlyToDirection(Vector2 origin, Vector2 direction)

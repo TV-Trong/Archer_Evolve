@@ -9,6 +9,8 @@ public class Enemy : MonoBehaviour, IEntity
     [field: SerializeField] public int healthPoint { get; set; }
     [field: SerializeField] public float strength { get; set; }
     [field: SerializeField] public float attackSpeed { get; set; }
+    [field: SerializeField] public GameObject popupDamage { get; set; }
+    [field: SerializeField] public Transform popupDamagePosition { get; set; }
 
     private Rigidbody2D myRigidbody;
     private PlayerBehaviour playerBehaviour;
@@ -60,11 +62,11 @@ public class Enemy : MonoBehaviour, IEntity
         if (collision.CompareTag("PlayerProjectile"))
         {
             if (myCoroutine != null) StopCoroutine(myCoroutine);
-            KnockbackCalculation(collision);
+            KnockbackCalculation();
         }
     }
 
-    private void KnockbackCalculation(Collider2D collision)
+    private void KnockbackCalculation()
     {
         Vector2 playerPosition = playerBehaviour.transform.position;
         Vector2 myPosition = transform.position;
@@ -122,5 +124,13 @@ public class Enemy : MonoBehaviour, IEntity
     {
         healthPoint -= (int)strength;
         Debug.LogWarning($"Enemy takes: {(int)strength} Actual Damage!");
+        ShowPopupDamage(strength);
+    }
+
+    public void ShowPopupDamage(float strength)
+    {
+        GameObject damageText = Instantiate(popupDamage, popupDamagePosition.position, Quaternion.identity);
+        DamagePopup damagePopup = damageText.GetComponent<DamagePopup>();
+        damagePopup.Setup((int)strength);
     }
 }

@@ -15,6 +15,8 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     [field: SerializeField] public int healthPoint { get; set; }
     [field: SerializeField] public float strength { get; set; }
     [field: SerializeField] public float attackSpeed { get; set; }
+    [field: SerializeField] public GameObject popupDamage { get; set; }
+    [field: SerializeField] public Transform popupDamagePosition { get; set; }
 
     [HideInInspector] public float baseMoveSpeed;
     private Rigidbody2D myRigidbody;
@@ -23,9 +25,6 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     private float baseAttackSpeed;
     private float attackTimer;
     private Vector2 moveInput;
-
-    private Vector2 getMousePosition;
-    private Vector2 getMouseWorldPosition;
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -97,5 +96,13 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
         healthPoint -= (int)strength;
         Debug.LogWarning($"Enemy takes: {(int)strength} Actual Damage!");
         Debug.Log($"Player HP = {healthPoint}");
+        ShowPopupDamage(strength);
+    }
+    public void ShowPopupDamage(float strength)
+    {
+        GameObject damageText = Instantiate(popupDamage, popupDamagePosition.position, Quaternion.identity);
+        DamagePopup damagePopup = damageText.GetComponent<DamagePopup>();
+        damagePopup.Setup((int)strength);
+        damagePopup.SetDamageColor(Color.blue);
     }
 }
