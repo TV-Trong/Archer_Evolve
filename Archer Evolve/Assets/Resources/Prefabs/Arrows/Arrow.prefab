@@ -47,10 +47,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5fb4b4f1b2602c42869bf846cb172be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <velocity>k__BackingField: 16
-  <lifetime>k__BackingField: 0.8
+  <velocity>k__BackingField: 8
+  <lifetime>k__BackingField: 1
   <projectilePrefab>k__BackingField: {fileID: 7288007452565994702}
-  <projectileDamage>k__BackingField: 10
+  <projectileDamage>k__BackingField: 5
 --- !u!212 &1718813920192907503
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -89,15 +89,15 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0463ddce4b81ed04387444c5a99080fd, type: 3}
+  m_SortingLayerID: -1647122409
+  m_SortingLayer: 1
+  m_SortingOrder: 1
+  m_Sprite: {fileID: -396542183, guid: e44655177a672b14c842ba8d5af31c66, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 0.16, y: 0.16}
+  m_Size: {x: 0.46875, y: 0.15625}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

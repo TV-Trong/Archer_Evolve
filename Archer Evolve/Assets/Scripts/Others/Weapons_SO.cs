@@ -6,8 +6,11 @@ using UnityEngine;
 public class Weapons_SO : ScriptableObject
 {
     public string weaponName;
+    public string weaponType;
+    public string weaponID;
     public float weaponFireRate;
     public float pullPower;
     public float weight;
     public Sprite weaponSprite;
+    public string discription;
 }

@@ -24,7 +24,7 @@ public class PickingWeapon : MonoBehaviour
     {
         playerBehaviour.attackSpeed = (playerBehaviour.attackSpeed + myWeapon.weaponFireRate) / 2;
         playerBehaviour.moveSpeed = (playerBehaviour.moveSpeed - myWeapon.weight);
-        playerBehaviour.strength = (playerBehaviour.strength * (1 + (myWeapon.pullPower * 10 / 100)));
+        playerBehaviour.strength = (playerBehaviour.strength * (myWeapon.pullPower * 10 / 100));
 
         Debug.LogWarning("After weapon distribute stats");
         Debug.Log($"Speed = {playerBehaviour.moveSpeed}");
