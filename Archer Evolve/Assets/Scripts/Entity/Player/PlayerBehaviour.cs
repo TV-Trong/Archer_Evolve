@@ -47,6 +47,8 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
         Moving(moveInput);
     }
 
+    #region Methods
+
     public Vector2 GetMoveInput()
     {
         return moveInput;
@@ -97,7 +99,7 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
         damageText.SetDamageColor(Color.blue);
         damageText.Setup((int)strength);
 
-
         popupDamage.SetActive(true);
     }
+    #endregion
 }

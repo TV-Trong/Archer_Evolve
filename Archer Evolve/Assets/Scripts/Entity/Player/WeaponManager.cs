@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PickingWeapon : MonoBehaviour
+public class WeaponManager : MonoBehaviour
 {
 
     public Weapons_SO myWeapon;
@@ -18,6 +18,14 @@ public class PickingWeapon : MonoBehaviour
     {
         playerBehaviour = PlayerBehaviour.instance;
         DistributeStats();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Return))
+        {
+            myWeapon.ActivateWeaponAbility();
+        }
     }
 
     private void DistributeStats()

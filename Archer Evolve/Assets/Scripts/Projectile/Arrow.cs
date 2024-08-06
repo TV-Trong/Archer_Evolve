@@ -11,12 +11,12 @@ public class Arrow : MonoBehaviour, IProjectile
     public Rigidbody2D rigidBody { get; set; }
     public PlayerBehaviour playerInstance { get; set; }
 
-    private PickingWeapon pickedWeapon;
+    private WeaponManager pickedWeapon;
 
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
-        pickedWeapon = FindObjectOfType<PickingWeapon>();
+        pickedWeapon = FindObjectOfType<WeaponManager>();
         WeaponPullPowerToVelocity();
     }
 
