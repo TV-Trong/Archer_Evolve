@@ -4,25 +4,27 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour, IEntity
 {
+   
+    [field: SerializeField] public Transform popupDamagePosition { get; set; }
+    [field: SerializeField] public Transform shooterPosition { get; set; }
+
+    [SerializeField] private float knockbackValue;
+    private Rigidbody2D myRigidbody;
+    private PlayerBehaviour playerBehaviour;
+    private CircleCollider2D playerHitbox;
+    private Coroutine myCoroutine;
+    private float baseMoveSpeed;
+    private float baseStrength;
+    private float baseAttackSpeed;
+    private float attackTimer;
+    private int maxHP;
+    private bool isPlayerInAttackRange = false;
+
     [field: Header("My Stat")]
     [field: SerializeField] public float moveSpeed { get; set; }
     [field: SerializeField] public int healthPoint { get; set; }
     [field: SerializeField] public float strength { get; set; }
     [field: SerializeField] public float attackSpeed { get; set; }
-    [field: SerializeField] public GameObject popupDamage { get; set; }
-    [field: SerializeField] public Transform popupDamagePosition { get; set; }
-
-    private Rigidbody2D myRigidbody;
-    private PlayerBehaviour playerBehaviour;
-    private CircleCollider2D playerHitbox;
-    private float baseMoveSpeed;
-    private int maxHP;
-    private float baseStrength;
-    private float baseAttackSpeed;
-    private float attackTimer;
-    private bool isPlayerInAttackRange = false;
-    private Coroutine myCoroutine;
-    [SerializeField] private float knockbackValue;
 
     private void Awake()
     {
@@ -127,8 +129,11 @@ public class Enemy : MonoBehaviour, IEntity
 
     public void ShowPopupDamage(float strength)
     {
-        GameObject damageText = Instantiate(popupDamage, popupDamagePosition.position, Quaternion.identity);
-        DamagePopup damagePopup = damageText.GetComponent<DamagePopup>();
-        damagePopup.Setup((int)strength);
+        GameObject popupDamage = PopupDamagePool.instance.GetPooledPopupDamageObjects();
+        popupDamage.transform.position = popupDamagePosition.position;
+        PopupDamage damageText = popupDamage.GetComponent<PopupDamage>();
+        damageText.Setup((int)strength);
+
+        popupDamage.SetActive(true);
     }
 }

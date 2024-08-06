@@ -6,18 +6,10 @@ using UnityEngine.InputSystem;
 public class PlayerBehaviour : MonoBehaviour, IEntity
 {
     public static PlayerBehaviour instance;
-
-    [SerializeField] private InputActionReference movingAction;
-    [SerializeField] private Transform shooterTransform;
-
-    [field: Header("My Stat")]
-    [field: SerializeField] public float moveSpeed { get; set; }
-    [field: SerializeField] public int healthPoint { get; set; }
-    [field: SerializeField] public float strength { get; set; }
-    [field: SerializeField] public float attackSpeed { get; set; }
-    [field: SerializeField] public GameObject popupDamage { get; set; }
+    [field: SerializeField] public Transform shooterPosition { get; set; }
     [field: SerializeField] public Transform popupDamagePosition { get; set; }
 
+    [SerializeField] private InputActionReference movingAction;
     [HideInInspector] public float baseMoveSpeed;
     private Rigidbody2D myRigidbody;
     private int maxHP;
@@ -25,6 +17,12 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     private float baseAttackSpeed;
     private float attackTimer;
     private Vector2 moveInput;
+
+    [field: Header("My Stat")]
+    [field: SerializeField] public float moveSpeed { get; set; }
+    [field: SerializeField] public int healthPoint { get; set; }
+    [field: SerializeField] public float strength { get; set; }
+    [field: SerializeField] public float attackSpeed { get; set; }
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -75,7 +73,7 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     public void Attack()
     {
         GameObject projectile = PlayerProjectilePool.instance.PlayerGetPooledProjectile();
-        projectile.transform.position = shooterTransform.position;
+        projectile.transform.position = shooterPosition.position;
         projectile.SetActive(true);
     }
 
@@ -93,9 +91,13 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     }
     public void ShowPopupDamage(float strength)
     {
-        GameObject damageText = Instantiate(popupDamage, popupDamagePosition.position, Quaternion.identity);
-        DamagePopup damagePopup = damageText.GetComponent<DamagePopup>();
-        damagePopup.Setup((int)strength);
-        damagePopup.SetDamageColor(Color.blue);
+        GameObject popupDamage = PopupDamagePool.instance.GetPooledPopupDamageObjects();
+        popupDamage.transform.position = popupDamagePosition.position;
+        PopupDamage damageText = popupDamage.GetComponent<PopupDamage>();
+        damageText.SetDamageColor(Color.blue);
+        damageText.Setup((int)strength);
+
+
+        popupDamage.SetActive(true);
     }
 }

@@ -1,10 +1,10 @@
 using UnityEngine;
 using TMPro;
 
-public class DamagePopup : MonoBehaviour
+public class PopupDamage : MonoBehaviour
 {
-    public float moveSpeed = 1f;
-    public float fadeDuration = 1f;
+    [SerializeField] private float moveSpeed = 1f;
+    [SerializeField] private float fadeDuration = 1f;
     private TMP_Text textMesh;
     private Color textColor;
 
@@ -24,7 +24,7 @@ public class DamagePopup : MonoBehaviour
         textMesh.color = textColor;
         if (textColor.a <= 0)
         {
-            Destroy(gameObject);
+            gameObject.SetActive(false);
         }
     }
 

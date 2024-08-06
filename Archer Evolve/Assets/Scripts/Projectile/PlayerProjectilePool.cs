@@ -7,13 +7,14 @@ public class PlayerProjectilePool : MonoBehaviour
     public static PlayerProjectilePool instance;
 
     [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private Transform playerProjectileHolder;
     [SerializeField] private int maxProjectileNumber;
+    private Transform playerProjectileHolder;
     private List<GameObject> playerProjectilePool = new List<GameObject>();
 
     private void Awake()
     {
         if (instance == null) instance = this;
+        playerProjectileHolder = transform;
     }
 
     private void Start()
