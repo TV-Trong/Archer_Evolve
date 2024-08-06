@@ -36,11 +36,6 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
         baseStrength = strength;
         baseAttackSpeed = attackSpeed;
         attackTimer = attackSpeed;
-
-        Debug.LogWarning("Before weapon distribute stats");
-        Debug.Log($"Speed = {baseMoveSpeed}");
-        Debug.Log($"Strength = {baseStrength}");
-        Debug.Log($"Attack Speed = {baseAttackSpeed}");
     }
 
     private void Update()
@@ -94,8 +89,6 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     public void TakeDamge(float strength)
     {
         healthPoint -= (int)strength;
-        Debug.LogWarning($"Enemy takes: {(int)strength} Actual Damage!");
-        Debug.Log($"Player HP = {healthPoint}");
         ShowPopupDamage(strength);
     }
     public void ShowPopupDamage(float strength)

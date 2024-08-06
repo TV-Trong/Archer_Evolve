@@ -112,7 +112,6 @@ public class Enemy : MonoBehaviour, IEntity
     public void Attack()
     {
         playerBehaviour.TakeDamge(strength);
-        Debug.LogWarning($"Player takes: {strength} Float Damage!");
     }
 
     public void Moving(Vector2 moveInput)
@@ -123,7 +122,6 @@ public class Enemy : MonoBehaviour, IEntity
     public void TakeDamge(float strength)
     {
         healthPoint -= (int)strength;
-        Debug.LogWarning($"Enemy takes: {(int)strength} Actual Damage!");
         ShowPopupDamage(strength);
     }
 

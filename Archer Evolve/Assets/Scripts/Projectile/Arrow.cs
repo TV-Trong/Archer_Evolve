@@ -37,9 +37,6 @@ public class Arrow : MonoBehaviour, IProjectile
         {
             Enemy enemy = collision.GetComponent<Enemy>();
             enemy.TakeDamge(CalculatedDamage());
-
-            Debug.LogWarning($"Enemy takes: {CalculatedDamage()} Float Damage!");
-
             gameObject.SetActive(false);
         }
     }

@@ -13,4 +13,5 @@ public class Weapons_SO : ScriptableObject
     public float weight;
     public Sprite weaponSprite;
     public string discription;
+    public GameObject weaponAbility;
 }
