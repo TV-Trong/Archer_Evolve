@@ -14,9 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weaponName: Velvesta
   weaponType: Bow
-  weaponID: 01
-  weaponFireRate: 1
-  pullPower: 15
+  weaponID: B01
+  fireRate: 1
+  pullPower: 5
   weight: 5
   weaponSprite: {fileID: 21300000, guid: 185195d05a905ec459f07e338f76412b, type: 3}
-  discription: noting here...
+  discription: Add later
+  weaponAbilityObject: {fileID: 6661981482620975565, guid: d5b266d73c4f84246acf49edb58439fc, type: 3}

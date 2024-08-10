@@ -133,6 +133,7 @@ public class Enemy : MonoBehaviour, IEntity
         popupDamage.transform.position = popupDamagePosition.position;
         PopupDamage damageText = popupDamage.GetComponent<PopupDamage>();
         damageText.Setup((int)strength);
+        damageText.SetDamageColor(Color.red);
 
         popupDamage.SetActive(true);
     }

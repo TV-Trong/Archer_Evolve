@@ -44,10 +44,10 @@ public class Arrow : MonoBehaviour, IProjectile
     private void WeaponPullPowerToVelocity()
     {
         float pullPowerToProjectileVelocity;
-        if (pickedWeapon.myWeapon.pullPower < 40) pullPowerToProjectileVelocity = pickedWeapon.myWeapon.pullPower / 5;
-        else pullPowerToProjectileVelocity = pickedWeapon.myWeapon.pullPower * 10 / 100 + 1;
+        if (pickedWeapon.myWeapon.pullForce < 40) pullPowerToProjectileVelocity = pickedWeapon.myWeapon.pullForce / 5;
+        else pullPowerToProjectileVelocity = pickedWeapon.myWeapon.pullForce * 10 / 100 + 1;
         velocity += pullPowerToProjectileVelocity;
-        Mathf.Clamp(velocity, 10, 50);
+        velocity = Mathf.Clamp(velocity, 10, 50);
     }
 
     private float CalculatedDamage()

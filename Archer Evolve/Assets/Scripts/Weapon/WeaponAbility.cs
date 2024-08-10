@@ -4,20 +4,28 @@ using UnityEngine;
 
 public class WeaponAbility : MonoBehaviour
 {
-    public void ChoseWeaponAbility(string abilityCode)
+    public void ChoseWeaponAbility(string weaponID, string weaponType)
     {
-        switch (abilityCode)
+        if (weaponType.Equals("Bow"))
         {
-            case "B00":
-                B00();
-                break;
-            case "B01":
-                B01();
-                break;
-            default:
-                Debug.LogWarning("Ability not Found!");
-                break;
+            switch (weaponID)
+            {
+                case "B00":
+                    B00();
+                    break;
+                case "B01":
+                    B01();
+                    break;
+                default:
+                    Debug.LogWarning("Ability not Found!");
+                    break;
+            }
         }
+        else if (weaponType.Equals("Crossbow"))
+        {
+
+        }
+        else Debug.LogWarning("Weapon is invalid!");
     }
 
 
@@ -28,6 +36,7 @@ public class WeaponAbility : MonoBehaviour
 
     private void B01()
     {
-        Debug.Log("Activate Ability 01");
+        WeaponManager weaponManager = FindObjectOfType<WeaponManager>();
+        weaponManager.UpdateWeaponStats(pullForce: 5);
     }
 }

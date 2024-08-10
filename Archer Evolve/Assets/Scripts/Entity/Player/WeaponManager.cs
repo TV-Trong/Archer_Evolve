@@ -17,7 +17,11 @@ public class WeaponManager : MonoBehaviour
     private void Start()
     {
         playerBehaviour = PlayerBehaviour.instance;
-        DistributeStats();
+
+        float fireRate = myWeapon.fireRate;
+        float pullPower = myWeapon.pullForce;
+        float weight = myWeapon.weight;
+        DistributeStats(fireRate, pullPower, weight);
     }
 
     private void Update()
@@ -25,13 +29,22 @@ public class WeaponManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Return))
         {
             myWeapon.ActivateWeaponAbility();
+            Debug.Log(myWeapon.pullForce);
         }
     }
 
-    private void DistributeStats()
+    public void UpdateWeaponStats(float fireRate = 0f, float pullForce = 0, float weight = 0f)
     {
-        playerBehaviour.attackSpeed = (playerBehaviour.attackSpeed + myWeapon.weaponFireRate) / 2;
-        playerBehaviour.moveSpeed = (playerBehaviour.moveSpeed - myWeapon.weight);
-        playerBehaviour.strength = (playerBehaviour.strength * (myWeapon.pullPower * 10 / 100));
+        myWeapon.fireRate += fireRate;
+        myWeapon.pullForce += pullForce;
+        myWeapon.weight += weight;
+        DistributeStats(fireRate: myWeapon.fireRate, pullForce: myWeapon.pullForce, weight: myWeapon.weight);
+    }
+
+    public void DistributeStats(float fireRate = 0f, float pullForce = 0, float weight = 0f)
+    {
+        if (fireRate != 0f) playerBehaviour.attackSpeed = (playerBehaviour.attackSpeed + myWeapon.fireRate) / 2;
+        if (pullForce != 0f) playerBehaviour.moveSpeed = (playerBehaviour.moveSpeed - myWeapon.weight);
+        if (weight != 0f) playerBehaviour.strength = (playerBehaviour.strength * (myWeapon.pullForce * 10 / 100));
     }
 }
