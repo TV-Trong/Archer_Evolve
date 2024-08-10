@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,10 +9,10 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
 
     [SerializeField] private InputActionReference movingAction;
     [HideInInspector] public float baseMoveSpeed;
+    [HideInInspector] public int baseHP;
+    [HideInInspector] public float baseStrength;
+    [HideInInspector] public float baseAttackSpeed;
     private Rigidbody2D myRigidbody;
-    private int maxHP;
-    private float baseStrength;
-    private float baseAttackSpeed;
     private float attackTimer;
     private Vector2 moveInput;
 
@@ -30,7 +28,7 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
         myRigidbody = GetComponent<Rigidbody2D>();
 
         baseMoveSpeed = moveSpeed;
-        maxHP = healthPoint;
+        baseHP = healthPoint;
         baseStrength = strength;
         baseAttackSpeed = attackSpeed;
         attackTimer = attackSpeed;

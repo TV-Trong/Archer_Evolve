@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponManager : MonoBehaviour
@@ -7,44 +5,70 @@ public class WeaponManager : MonoBehaviour
 
     public Weapons_SO myWeapon;
     private PlayerBehaviour playerBehaviour;
+    private WeaponAbility weaponAbility;
 
     private void Awake()
     {
-        SpriteRenderer weaponSprite = gameObject.GetComponent<SpriteRenderer>();
-        weaponSprite.sprite = myWeapon.weaponSprite;
+        weaponAbility = GetComponent<WeaponAbility>();
+        SetupWeaponSprite();
+        myWeapon.SetupWeapon();
     }
 
     private void Start()
     {
         playerBehaviour = PlayerBehaviour.instance;
-
-        float fireRate = myWeapon.fireRate;
-        float pullPower = myWeapon.pullForce;
-        float weight = myWeapon.weight;
-        DistributeStats(fireRate, pullPower, weight);
+        SetupWeaponStats();
     }
 
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Return))
         {
-            myWeapon.ActivateWeaponAbility();
+            weaponAbility.ActivateWeaponAbility(myWeapon.weaponID, myWeapon.weaponType);
             Debug.Log(myWeapon.pullForce);
         }
     }
 
+    #region Methods
+    private void SetupWeaponSprite()
+    {
+        SpriteRenderer weaponSprite = GetComponent<SpriteRenderer>();
+        weaponSprite.sprite = myWeapon.weaponSprite;
+    }
+
+    private void SetupWeaponStats()
+    {
+        float fireRate = myWeapon.fireRate;
+        float pullPower = myWeapon.pullForce;
+        float weight = myWeapon.weight;
+        DistributeStats(fireRate, pullPower, weight);
+    }
+
     public void UpdateWeaponStats(float fireRate = 0f, float pullForce = 0, float weight = 0f)
     {
-        myWeapon.fireRate += fireRate;
-        myWeapon.pullForce += pullForce;
-        myWeapon.weight += weight;
-        DistributeStats(fireRate: myWeapon.fireRate, pullForce: myWeapon.pullForce, weight: myWeapon.weight);
+        if (fireRate > 0.1f)
+        {
+            myWeapon.fireRate += fireRate;
+            DistributeStats(fireRate: myWeapon.fireRate);
+        }
+        if (pullForce > 0.1f)
+        {
+            myWeapon.pullForce += pullForce;
+            DistributeStats(pullForce: myWeapon.pullForce);
+        }
+        if (weight > 0.1f)
+        {
+            myWeapon.weight += weight;
+            DistributeStats(weight: myWeapon.weight);
+        }
+        
     }
 
     public void DistributeStats(float fireRate = 0f, float pullForce = 0, float weight = 0f)
     {
-        if (fireRate != 0f) playerBehaviour.attackSpeed = (playerBehaviour.attackSpeed + myWeapon.fireRate) / 2;
-        if (pullForce != 0f) playerBehaviour.moveSpeed = (playerBehaviour.moveSpeed - myWeapon.weight);
-        if (weight != 0f) playerBehaviour.strength = (playerBehaviour.strength * (myWeapon.pullForce * 10 / 100));
-    }
+        if (fireRate > 0.1f) playerBehaviour.attackSpeed = (playerBehaviour.baseAttackSpeed + myWeapon.fireRate) / 2;
+        if (pullForce > 0.1f) playerBehaviour.moveSpeed = (playerBehaviour.baseMoveSpeed - myWeapon.weight);
+        if (weight > 0.1f) playerBehaviour.strength = (playerBehaviour.baseStrength * (myWeapon.pullForce * 10 / 100));
+    } 
+    #endregion
 }

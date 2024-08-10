@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class WeaponAbility : MonoBehaviour
 {
-    public void ChoseWeaponAbility(string weaponID, string weaponType)
+    public void ActivateWeaponAbility(string weaponID, string weaponType)
     {
         if (weaponType.Equals("Bow"))
         {
@@ -28,6 +26,7 @@ public class WeaponAbility : MonoBehaviour
         else Debug.LogWarning("Weapon is invalid!");
     }
 
+    #region WeaponAbilities
 
     private void B00()
     {
@@ -38,5 +37,6 @@ public class WeaponAbility : MonoBehaviour
     {
         WeaponManager weaponManager = FindObjectOfType<WeaponManager>();
         weaponManager.UpdateWeaponStats(pullForce: 5);
-    }
+    } 
+    #endregion
 }

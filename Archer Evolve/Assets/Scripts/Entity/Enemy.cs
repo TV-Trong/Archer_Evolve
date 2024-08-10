@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour, IEntity
@@ -8,7 +7,6 @@ public class Enemy : MonoBehaviour, IEntity
     [field: SerializeField] public Transform popupDamagePosition { get; set; }
     [field: SerializeField] public Transform shooterPosition { get; set; }
 
-    [SerializeField] private float knockbackValue;
     private Rigidbody2D myRigidbody;
     private PlayerBehaviour playerBehaviour;
     private CircleCollider2D playerHitbox;
@@ -25,6 +23,8 @@ public class Enemy : MonoBehaviour, IEntity
     [field: SerializeField] public int healthPoint { get; set; }
     [field: SerializeField] public float strength { get; set; }
     [field: SerializeField] public float attackSpeed { get; set; }
+
+    [SerializeField] private float knockbackValue;
 
     private void Awake()
     {
@@ -68,27 +68,34 @@ public class Enemy : MonoBehaviour, IEntity
         }
     }
 
-    private void KnockbackCalculation()
-    {
-        Vector2 playerPosition = playerBehaviour.transform.position;
-        Vector2 myPosition = transform.position;
-        Vector2 knockbackDirection = (myPosition - playerPosition).normalized;
-        myRigidbody.AddForce(knockbackDirection * 2f, ForceMode2D.Impulse);
-        myCoroutine = StartCoroutine(KnockbackTime(knockbackValue));
-    }
-
-    private IEnumerator KnockbackTime(float time)
-    {
-        yield return new WaitForSeconds(time);
-        myRigidbody.velocity = Vector2.zero;
-    }
-
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision == playerHitbox)
         {
             isPlayerInAttackRange = false;
         }
+    }
+
+    #region Methods
+
+    private void KnockbackCalculation()
+    {
+        if (knockbackValue != 0) myCoroutine = StartCoroutine(InitiateKnockback(knockbackValue));
+    }
+
+    private IEnumerator InitiateKnockback(float time)
+    {
+        SetupKnockback();
+        yield return new WaitForSeconds(time);
+        myRigidbody.velocity = Vector2.zero;
+    }
+
+    private void SetupKnockback()
+    {
+        Vector2 playerPosition = playerBehaviour.transform.position;
+        Vector2 myPosition = transform.position;
+        Vector2 knockbackDirection = (myPosition - playerPosition).normalized;
+        myRigidbody.AddForce(knockbackDirection * 2f, ForceMode2D.Impulse);
     }
 
     private void InitiateAttack()
@@ -136,5 +143,6 @@ public class Enemy : MonoBehaviour, IEntity
         damageText.SetDamageColor(Color.red);
 
         popupDamage.SetActive(true);
-    }
+    } 
+    #endregion
 }

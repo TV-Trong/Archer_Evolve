@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Arrow : MonoBehaviour, IProjectile
@@ -12,23 +11,24 @@ public class Arrow : MonoBehaviour, IProjectile
     public PlayerBehaviour playerInstance { get; set; }
 
     private WeaponManager pickedWeapon;
+    private float baseVelocity;
+    private float baseLifetime;
+    private float baseProjectileDamage;
 
     private void Awake()
     {
         rigidBody = GetComponent<Rigidbody2D>();
         pickedWeapon = FindObjectOfType<WeaponManager>();
-        WeaponPullPowerToVelocity();
+
+        baseVelocity = velocity;
+        baseLifetime = lifetime;
+        baseProjectileDamage = projectileDamage;
     }
 
     private void OnEnable()
     {
         playerInstance = PlayerBehaviour.instance;
-
-        Vector2 weaponPosition = (Vector2)playerInstance.transform.position + new Vector2(0.1f, 0.32f);
-        Vector2 getMouseWorldPosition = playerInstance.GetMousePositionOnScreen();
-        Vector2 trajectoryDirection = (getMouseWorldPosition - weaponPosition).normalized;
-
-        FlyToDirection(weaponPosition, trajectoryDirection);
+        SetupProjectileWhenEnable();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -41,12 +41,19 @@ public class Arrow : MonoBehaviour, IProjectile
         }
     }
 
+    private void SetupProjectileWhenEnable()
+    {
+        WeaponPullPowerToVelocity();
+        Vector2 weaponPosition = (Vector2)playerInstance.transform.position + new Vector2(0.1f, 0.32f);
+        Vector2 getMouseWorldPosition = playerInstance.GetMousePositionOnScreen();
+        Vector2 trajectoryDirection = (getMouseWorldPosition - weaponPosition).normalized;
+        FlyToDirection(weaponPosition, trajectoryDirection);
+    }
+
     private void WeaponPullPowerToVelocity()
     {
-        float pullPowerToProjectileVelocity;
-        if (pickedWeapon.myWeapon.pullForce < 40) pullPowerToProjectileVelocity = pickedWeapon.myWeapon.pullForce / 5;
-        else pullPowerToProjectileVelocity = pickedWeapon.myWeapon.pullForce * 10 / 100 + 1;
-        velocity += pullPowerToProjectileVelocity;
+        float calculatedVelocity = baseVelocity + pickedWeapon.myWeapon.pullForce;
+        velocity = calculatedVelocity;
         velocity = Mathf.Clamp(velocity, 10, 50);
     }
 

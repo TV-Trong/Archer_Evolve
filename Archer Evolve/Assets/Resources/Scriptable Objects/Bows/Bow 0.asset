@@ -16,8 +16,11 @@ MonoBehaviour:
   weaponType: Bow
   weaponID: B00
   fireRate: 1
-  pullPower: 5
+  pullForce: 0
   weight: 5
+  baseFireRate: 1
+  basePullForce: 5
+  baseWeight: 5
   weaponSprite: {fileID: 21300000, guid: e23dede51c81d2b4da161acf685f4903, type: 3}
   discription: A beginner's bow. This is where every great archer is made.
   weaponAbilityObject: {fileID: 6661981482620975565, guid: d5b266d73c4f84246acf49edb58439fc, type: 3}

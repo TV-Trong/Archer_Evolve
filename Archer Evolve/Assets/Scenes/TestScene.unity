@@ -8709,6 +8709,9 @@ MonoBehaviour:
   <popupDamagePosition>k__BackingField: {fileID: 1129343921}
   movingAction: {fileID: 555381290488344010, guid: 2f37f4ee6baaceb48bf10df5c8fc0bb1, type: 3}
   baseMoveSpeed: 0
+  baseHP: 0
+  baseStrength: 0
+  baseAttackSpeed: 0
   <moveSpeed>k__BackingField: 150
   <healthPoint>k__BackingField: 100
   <strength>k__BackingField: 10
@@ -34697,11 +34700,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <popupDamagePosition>k__BackingField: {fileID: 494056009}
   <shooterPosition>k__BackingField: {fileID: 1460179313}
-  knockbackValue: 0.2
   <moveSpeed>k__BackingField: 1
   <healthPoint>k__BackingField: 100
   <strength>k__BackingField: 10
   <attackSpeed>k__BackingField: 1
+  knockbackValue: 0.2
 --- !u!50 &1460179315
 Rigidbody2D:
   serializedVersion: 4
@@ -39044,6 +39047,7 @@ GameObject:
   - component: {fileID: 1793258776}
   - component: {fileID: 1793258777}
   - component: {fileID: 1793258778}
+  - component: {fileID: 1793258779}
   m_Layer: 3
   m_Name: Weapon
   m_TagString: Untagged
@@ -39144,6 +39148,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myWeapon: {fileID: 11400000, guid: c43c065511269c149b304fc2a3aa5e3d, type: 2}
+--- !u!114 &1793258779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1793258774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 150a66a1918021e408ee4cb4c65407d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1853459586
 GameObject:
   m_ObjectHideFlags: 0
@@ -39337,11 +39353,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <popupDamagePosition>k__BackingField: {fileID: 122850027}
   <shooterPosition>k__BackingField: {fileID: 2108001481}
-  knockbackValue: 0.1
   <moveSpeed>k__BackingField: 0
   <healthPoint>k__BackingField: 100
   <strength>k__BackingField: 0
   <attackSpeed>k__BackingField: 1
+  knockbackValue: 0
 --- !u!50 &2108001483
 Rigidbody2D:
   serializedVersion: 4

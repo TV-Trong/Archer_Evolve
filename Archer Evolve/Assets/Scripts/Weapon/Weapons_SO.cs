@@ -1,7 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Reflection;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "NewWeapon", menuName = "Weapon")]
@@ -10,16 +6,19 @@ public class Weapons_SO : ScriptableObject
     public string weaponName;
     public string weaponType;
     public string weaponID;
-    public float fireRate;
-    public float pullForce;
-    public float weight;
+    [HideInInspector] public float fireRate = 0;
+    [HideInInspector] public float pullForce = 0;
+    [HideInInspector] public float weight = 0;
+    [SerializeField] private float baseFireRate;
+    [SerializeField] private float basePullForce;
+    [SerializeField] private float baseWeight;
     public Sprite weaponSprite;
     public string discription;
-    public GameObject weaponAbilityObject;
 
-    public void ActivateWeaponAbility()
+    public void SetupWeapon()
     {
-        WeaponAbility weaponAbility = weaponAbilityObject.GetComponent<WeaponAbility>();
-        weaponAbility.ChoseWeaponAbility(weaponID, weaponType);
+        fireRate = baseFireRate;
+        pullForce = basePullForce;
+        weight = baseWeight;
     }
 }
