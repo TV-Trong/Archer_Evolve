@@ -8708,6 +8708,7 @@ MonoBehaviour:
   <shooterPosition>k__BackingField: {fileID: 1793258775}
   <popupDamagePosition>k__BackingField: {fileID: 1129343921}
   movingAction: {fileID: 555381290488344010, guid: 2f37f4ee6baaceb48bf10df5c8fc0bb1, type: 3}
+  baseInvincibilityFrame: 0.5
   baseMoveSpeed: 0
   baseHP: 0
   baseStrength: 0

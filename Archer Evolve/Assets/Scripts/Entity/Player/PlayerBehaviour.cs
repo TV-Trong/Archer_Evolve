@@ -8,6 +8,7 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     [field: SerializeField] public Transform popupDamagePosition { get; set; }
 
     [SerializeField] private InputActionReference movingAction;
+    [SerializeField] private float baseInvincibilityFrame = 0.5f;
     [HideInInspector] public float baseMoveSpeed;
     [HideInInspector] public int baseHP;
     [HideInInspector] public float baseStrength;
@@ -15,6 +16,8 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     private Rigidbody2D myRigidbody;
     private float attackTimer;
     private Vector2 moveInput;
+    private bool isInvincible;
+    private float invincibilityFrame;
 
     [field: Header("My Stat")]
     [field: SerializeField] public float moveSpeed { get; set; }
@@ -24,20 +27,21 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     private void Awake()
     {
         if (instance == null) instance = this;
-
         myRigidbody = GetComponent<Rigidbody2D>();
-
-        baseMoveSpeed = moveSpeed;
-        baseHP = healthPoint;
-        baseStrength = strength;
-        baseAttackSpeed = attackSpeed;
-        attackTimer = attackSpeed;
+        SetupBaseStats();
     }
 
     private void Update()
     {
         moveInput = movingAction.action.ReadValue<Vector2>();
         InitiateAttack();
+
+        if (isInvincible) invincibilityFrame -= Time.deltaTime;
+        if (invincibilityFrame <= 0f)
+        {
+            invincibilityFrame = baseInvincibilityFrame;
+            isInvincible = false;
+        }
     }
 
     private void FixedUpdate()
@@ -46,6 +50,15 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     }
 
     #region Methods
+    private void SetupBaseStats()
+    {
+        baseMoveSpeed = moveSpeed;
+        baseHP = healthPoint;
+        baseStrength = strength;
+        baseAttackSpeed = attackSpeed;
+        attackTimer = attackSpeed;
+        invincibilityFrame = baseInvincibilityFrame;
+    }
 
     public Vector2 GetMoveInput()
     {
@@ -86,8 +99,12 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
 
     public void TakeDamge(float strength)
     {
-        healthPoint -= (int)strength;
-        ShowPopupDamage(strength);
+        if (!isInvincible)
+        {
+            healthPoint -= (int)strength;
+            ShowPopupDamage(strength);
+            isInvincible = true;
+        }
     }
     public void ShowPopupDamage(float strength)
     {
@@ -96,7 +113,6 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
         PopupDamage damageText = popupDamage.GetComponent<PopupDamage>();
         damageText.SetDamageColor(Color.blue);
         damageText.Setup((int)strength);
-
         popupDamage.SetActive(true);
     }
     #endregion
