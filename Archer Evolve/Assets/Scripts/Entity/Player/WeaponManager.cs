@@ -67,8 +67,8 @@ public class WeaponManager : MonoBehaviour
     public void DistributeStats(float fireRate = 0f, float pullForce = 0, float weight = 0f)
     {
         if (fireRate > 0.1f) playerBehaviour.attackSpeed = (playerBehaviour.baseAttackSpeed + myWeapon.fireRate) / 2;
-        if (pullForce > 0.1f) playerBehaviour.moveSpeed = (playerBehaviour.baseMoveSpeed - myWeapon.weight);
-        if (weight > 0.1f) playerBehaviour.strength = (playerBehaviour.baseStrength * (myWeapon.pullForce * 10 / 100));
+        if (weight > 0.1f) playerBehaviour.moveSpeed = (playerBehaviour.baseMoveSpeed - myWeapon.weight);
+        if (pullForce > 0.1f) playerBehaviour.strength = (playerBehaviour.baseStrength * (myWeapon.pullForce * 10 / 100));
     } 
     #endregion
 }
