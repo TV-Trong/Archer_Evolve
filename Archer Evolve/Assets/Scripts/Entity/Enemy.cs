@@ -78,6 +78,11 @@ public class Enemy : MonoBehaviour, IEntity
 
     #region Methods
 
+    public void FlipSprite()
+    {
+        if (playerBehaviour.transform.position.x > transform.position.x) transform.localScale = new Vector3(-1, 1, 1);
+        else transform.localScale = new Vector3(1, 1, 1);
+    }
     private void KnockbackCalculation()
     {
         if (knockbackValue != 0) myCoroutine = StartCoroutine(InitiateKnockback(knockbackValue));
