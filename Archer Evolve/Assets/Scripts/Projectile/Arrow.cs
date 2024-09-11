@@ -54,7 +54,7 @@ public class Arrow : MonoBehaviour, IProjectile
     {
         float calculatedVelocity = baseVelocity + pickedWeapon.myWeapon.pullForce;
         velocity = calculatedVelocity;
-        velocity = Mathf.Clamp(velocity, 10, 50);
+        velocity = Mathf.Clamp(velocity, 0.1f, 50);
     }
 
     private float CalculatedDamage()
