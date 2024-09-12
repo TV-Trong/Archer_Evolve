@@ -85,7 +85,7 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
 
     public void Attack()
     {
-        GameObject projectile = PlayerProjectilePool.instance.PlayerGetPooledProjectile();
+        GameObject projectile = ObjectsPooler.instance.GetPooledObjects(0);
         projectile.transform.position = shooterPosition.position;
         projectile.SetActive(true);
     }
@@ -108,7 +108,7 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     }
     public void ShowPopupDamage(float strength)
     {
-        GameObject popupDamage = PopupDamagePool.instance.GetPooledPopupDamageObjects();
+        GameObject popupDamage = ObjectsPooler.instance.GetPooledObjects(1);
         popupDamage.transform.position = popupDamagePosition.position;
         PopupDamage damageText = popupDamage.GetComponent<PopupDamage>();
         damageText.SetDamageColor(Color.blue);

@@ -141,7 +141,7 @@ public class Enemy : MonoBehaviour, IEntity
 
     public void ShowPopupDamage(float strength)
     {
-        GameObject popupDamage = PopupDamagePool.instance.GetPooledPopupDamageObjects();
+        GameObject popupDamage = ObjectsPooler.instance.GetPooledObjects(1);
         popupDamage.transform.position = popupDamagePosition.position;
         PopupDamage damageText = popupDamage.GetComponent<PopupDamage>();
         damageText.Setup((int)strength);

@@ -17411,7 +17411,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 626093096}
-  - component: {fileID: 626093097}
   m_Layer: 0
   m_Name: Player Projectile
   m_TagString: Untagged
@@ -17434,20 +17433,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1646753186}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &626093097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 626093095}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6925d4d586e160b4a910f971477a3251, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 7288007452565994702, guid: 6731227282f152f4c834eabe99da5bb2, type: 3}
-  maxProjectileNumber: 100
 --- !u!1 &646085261
 GameObject:
   m_ObjectHideFlags: 0
@@ -34617,7 +34602,7 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.22}
+  m_Offset: {x: 0, y: 0.08}
   m_Size: {x: 0.64, y: 0.46}
   m_Direction: 1
 --- !u!212 &1460179312
@@ -34764,8 +34749,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1646753186}
+  - component: {fileID: 1646753187}
   m_Layer: 0
-  m_Name: Clone Parent
+  m_Name: Pool Holder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -34788,6 +34774,27 @@ Transform:
   - {fileID: 1872420577}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1646753187
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646753185}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81af6c0cdc15a564eb81d35a0426f81c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  objectPools:
+  - objectsPrefab: {fileID: 7288007452565994702, guid: 6731227282f152f4c834eabe99da5bb2, type: 3}
+    maxObjectsNumber: 200
+    objectsParent: {fileID: 626093096}
+    listObject: []
+  - objectsPrefab: {fileID: 8193949003938323388, guid: c9f7c6474ded1914fb30f01fcffbc46d, type: 3}
+    maxObjectsNumber: 200
+    objectsParent: {fileID: 1872420577}
+    listObject: []
 --- !u!1 &1730233889
 GameObject:
   m_ObjectHideFlags: 0
@@ -39133,7 +39140,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1647122409
   m_SortingLayer: 1
-  m_SortingOrder: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -39256,7 +39263,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1647122409
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: -636516011, guid: 5b37dc0aa9b0254438506d8bd6689b5e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -39289,9 +39296,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1872420577}
-  - component: {fileID: 1872420578}
   m_Layer: 0
-  m_Name: Popup Damage
+  m_Name: Popup Damage Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39312,20 +39318,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1646753186}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1872420578
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1872420576}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 255b7846806163740999c41c822ca799, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  popupDamagePrefab: {fileID: 8193949003938323388, guid: c9f7c6474ded1914fb30f01fcffbc46d, type: 3}
-  maxPopupNumber: 150
 --- !u!1 &2108001480
 GameObject:
   m_ObjectHideFlags: 0
