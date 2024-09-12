@@ -36,6 +36,7 @@ public class ObjectsPooler : MonoBehaviour
     }
     // Index = 0 : player projectile
     // Index = 1 : damage text
+    // Index = 2 : Green Slime
 
 }
 

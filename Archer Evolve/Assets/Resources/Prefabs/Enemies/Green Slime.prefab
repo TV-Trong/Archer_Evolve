@@ -12,10 +12,11 @@ GameObject:
   - component: {fileID: 2890529104729994437}
   - component: {fileID: 8548827747714553553}
   - component: {fileID: 4403556879365219612}
-  - component: {fileID: 8957520666093449488}
   - component: {fileID: 7160816052652343159}
-  m_Layer: 0
-  m_Name: Slime
+  - component: {fileID: 8957520666093449488}
+  - component: {fileID: 3272230435322240750}
+  m_Layer: 7
+  m_Name: Green Slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,8 +30,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 150306106181538786}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 3, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -150,26 +151,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
---- !u!114 &8957520666093449488
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 150306106181538786}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84c40ce0f6e33de4aa07c9489fa62aed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  <popupDamagePosition>k__BackingField: {fileID: 4100739692637268779}
-  <shooterPosition>k__BackingField: {fileID: 2735076805300060144}
-  <moveSpeed>k__BackingField: 1
-  <healthPoint>k__BackingField: 100
-  <strength>k__BackingField: 10
-  <attackSpeed>k__BackingField: 1
-  knockbackValue: 0.2
+  m_Constraints: 4
 --- !u!95 &7160816052652343159
 Animator:
   serializedVersion: 5
@@ -191,6 +173,61 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8957520666093449488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150306106181538786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84c40ce0f6e33de4aa07c9489fa62aed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <popupDamagePosition>k__BackingField: {fileID: 4100739692637268779}
+  <shooterPosition>k__BackingField: {fileID: 2735076805300060144}
+  <moveSpeed>k__BackingField: 1
+  <healthPoint>k__BackingField: 25
+  <strength>k__BackingField: 10
+  <attackSpeed>k__BackingField: 1
+  knockbackValue: 0.2
+  spawnRadius: 5
+--- !u!70 &3272230435322240750
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 150306106181538786}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 128
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0.02}
+  m_Size: {x: 0.45, y: 0.35}
+  m_Direction: 1
 --- !u!1 &2342603912823659561
 GameObject:
   m_ObjectHideFlags: 0

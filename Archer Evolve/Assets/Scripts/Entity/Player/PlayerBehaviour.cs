@@ -115,5 +115,9 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
         damageText.Setup((int)strength);
         popupDamage.SetActive(true);
     }
+    public void Destroyed()
+    {
+        Debug.Log("Womp Womp!");
+    }
     #endregion
 }

@@ -15,32 +15,30 @@ public class Enemy : MonoBehaviour, IEntity
     private float baseStrength;
     private float baseAttackSpeed;
     private float attackTimer;
-    private int maxHP;
+    private int baseHealth;
     private bool isPlayerInAttackRange = false;
 
-    [field: Header("My Stat")]
+    [field: Header("Statistic")]
     [field: SerializeField] public float moveSpeed { get; set; }
     [field: SerializeField] public int healthPoint { get; set; }
     [field: SerializeField] public float strength { get; set; }
     [field: SerializeField] public float attackSpeed { get; set; }
 
     [SerializeField] private float knockbackValue;
+    [SerializeField] private float spawnRadius;
+    private float extraRadius = 2f;
+
+    Animator animator;
 
     private void Awake()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
-
         baseMoveSpeed = moveSpeed;
-        maxHP = healthPoint;
+        baseHealth = healthPoint;
         baseStrength = strength;
         baseAttackSpeed = attackSpeed;
         attackTimer = 0;
-    }
-
-    private void Start()
-    {
-        playerBehaviour = PlayerBehaviour.instance;
-        playerHitbox = PlayerBehaviour.instance.GetComponentInChildren<CircleCollider2D>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -52,6 +50,15 @@ public class Enemy : MonoBehaviour, IEntity
     private void FixedUpdate()
     {
         FollowPlayer();
+    }
+
+    private void OnEnable()
+    {
+        playerBehaviour = PlayerBehaviour.instance;
+        playerHitbox = PlayerBehaviour.instance.GetComponentInChildren<CircleCollider2D>();
+        RepositionEnemyWhenEnable();
+        healthPoint = baseHealth;
+        moveSpeed = baseMoveSpeed;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -78,10 +85,21 @@ public class Enemy : MonoBehaviour, IEntity
 
     #region Methods
 
+    private void RepositionEnemyWhenEnable()
+    {
+        float randomAngle = Random.Range(0f, 2 * Mathf.PI);
+        float randomDistance = Random.Range(spawnRadius, spawnRadius + extraRadius);
+        transform.position = new Vector3(
+            playerBehaviour.transform.position.x + Mathf.Cos(randomAngle) * randomDistance,
+            playerBehaviour.transform.position.y + Mathf.Sin(randomAngle) * randomDistance,
+            0f);
+    }
+
     public void FlipSprite()
     {
-        if (playerBehaviour.transform.position.x > transform.position.x) transform.localScale = new Vector3(-1, 1, 1);
-        else transform.localScale = new Vector3(1, 1, 1);
+        if (playerBehaviour != null)
+            if (playerBehaviour.transform.position.x > transform.position.x) transform.localScale = new Vector3(-1, 1, 1);
+            else transform.localScale = new Vector3(1, 1, 1);
     }
     private void KnockbackCalculation()
     {
@@ -92,7 +110,7 @@ public class Enemy : MonoBehaviour, IEntity
     {
         SetupKnockback();
         yield return new WaitForSeconds(time);
-        myRigidbody.velocity = Vector2.zero;
+        ResetVelocity();
     }
 
     private void SetupKnockback()
@@ -137,6 +155,11 @@ public class Enemy : MonoBehaviour, IEntity
     {
         healthPoint -= (int)strength;
         ShowPopupDamage(strength);
+        if (healthPoint <= 0)
+        {
+            moveSpeed = 0f;
+            Destroyed();
+        }
     }
 
     public void ShowPopupDamage(float strength)
@@ -148,6 +171,16 @@ public class Enemy : MonoBehaviour, IEntity
         damageText.SetDamageColor(Color.red);
 
         popupDamage.SetActive(true);
-    } 
+    }
+
+    public void Destroyed()
+    {
+        gameObject.SetActive(false);
+    }
+
+    public void ResetVelocity()
+    {
+        myRigidbody.velocity = Vector2.zero;
+    }
     #endregion
 }
