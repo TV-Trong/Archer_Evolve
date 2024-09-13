@@ -192,7 +192,7 @@ MonoBehaviour:
   <strength>k__BackingField: 10
   <attackSpeed>k__BackingField: 1
   knockbackValue: 0.2
-  spawnRadius: 5
+  spawnRadius: 10
 --- !u!70 &3272230435322240750
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -212,10 +212,10 @@ CapsuleCollider2D:
   m_LayerOverridePriority: 0
   m_ForceSendLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 136
   m_ForceReceiveLayers:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 136
   m_ContactCaptureLayers:
     serializedVersion: 2
     m_Bits: 0
