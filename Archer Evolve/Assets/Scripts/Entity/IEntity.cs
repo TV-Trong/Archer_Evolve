@@ -7,7 +7,7 @@ public interface IEntity
     float strength {  get; set; }
     float attackSpeed {  get; set; }
     Transform popupDamagePosition { get; set; }
-    Transform shooterPosition { get; set; }
+    Transform weaponPosition { get; set; }
 
     void Moving(Vector2 moveInput);
     void Attack();

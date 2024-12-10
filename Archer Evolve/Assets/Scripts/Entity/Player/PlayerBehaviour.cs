@@ -4,7 +4,7 @@ using UnityEngine.InputSystem;
 public class PlayerBehaviour : MonoBehaviour, IEntity
 {
     public static PlayerBehaviour instance;
-    [field: SerializeField] public Transform shooterPosition { get; set; }
+    [field: SerializeField] public Transform weaponPosition { get; set; }
     [field: SerializeField] public Transform popupDamagePosition { get; set; }
 
     [SerializeField] private InputActionReference movingAction;
@@ -19,15 +19,16 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     private bool isInvincible;
     private float invincibilityFrame;
 
-    [field: Header("My Stat")]
+    [field: Header("Base Stats Variable")]
     [field: SerializeField] public float moveSpeed { get; set; }
     [field: SerializeField] public int healthPoint { get; set; }
     [field: SerializeField] public float strength { get; set; }
     [field: SerializeField] public float attackSpeed { get; set; }
+    [HideInInspector] public int expPoint;
+    [HideInInspector] public int level;
     private void Awake()
     {
         if (instance == null) instance = this;
-        myRigidbody = GetComponent<Rigidbody2D>();
         SetupBaseStats();
     }
 
@@ -52,6 +53,7 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     #region Methods
     private void SetupBaseStats()
     {
+        myRigidbody = GetComponent<Rigidbody2D>();
         baseMoveSpeed = moveSpeed;
         baseHP = healthPoint;
         baseStrength = strength;
@@ -86,7 +88,7 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     public void Attack()
     {
         GameObject projectile = ObjectsPooler.instance.GetPooledObjects(0);
-        projectile.transform.position = shooterPosition.position;
+        projectile.transform.position = weaponPosition.position;
         projectile.SetActive(true);
     }
 

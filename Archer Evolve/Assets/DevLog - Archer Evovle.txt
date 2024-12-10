@@ -1,0 +1,57 @@
+28/07/2024:
+	- Create Unity project, name it Archer Evolve
+	- Using Input System to make player move
+	- Player can now move
+30/07/2024:
+	- Player can now shoot projectile to cursor direction
+	- Projectile now have a pooling system
+	- Add sprite and simple run animation to player
+	- First character name is Bella
+	- Player now flip sprite depend on position of the cursor
+01/08/2024:
+	- Add sprite to projectile and add a bow to player hand to shoot
+	- Bow also rotate base on cursor position
+	- There is enemy now
+	- Player and Enemy now has stats: hp, strength, speed, attack speed
+	- Code basic enemy behavior: follow and attack player when enter attack range
+	- Player and enemy can attack each other
+	- Scale player animation with move speed
+05/08/2024
+	- Make infinite map by using tile positioning
+	- Add weapon to the game
+	- Link player - weapon - arrow stat to calculate damage, move speed and attack speed:
+		+ Player / Enemy: 	* HP
+						* Move speed
+						* Strength: affects final damage calculation
+						* Attack Speed
+
+		+ Weapon (Bow/Crossbow):	* Fire rate: affects player attack speed
+								* Pull power: affects final damage calculation and arrow velocity
+								* Weight: affects player move speed
+
+		+ Arrow (Projectile): 	* Velocity
+							* Damage: affects final damage calculation
+							* Lifetime
+06/08/2024
+	- Make enemy get pushed back when damaged
+	- Player and enemy now have popup damage text when they take damage
+	- Pool the popup damage, similar to projectile, to increase performance
+	- Add weapon: Velvesta
+10/08/2024
+	- Weapon now reset stats after each play
+	- Codes cleaning
+13/08/2024
+	- Add invincibility frame for player
+11/09/2024
+	- Add first enemy: Green Slime
+	- G Slime can move, have animation and can flip sprite
+12/09/2024
+	- Add universal pooling system: more versatile, allow pooling of any object with only one script
+	- Create spawner script to spawn enemy around player
+	- Add spawn radius stat to enemy script to control spawn point of enemy
+	- Enemy now have life cycle (die and respawn)
+	- Add non-trigger collider to prevent entity cramp
+	( A Goblin enemy was added but i forgot to mention it)
+10/12/2024
+	- Rename some instance for better understanding
+	- Add public exp and level to player behaviour; add exp yield and level to enemy but it is private

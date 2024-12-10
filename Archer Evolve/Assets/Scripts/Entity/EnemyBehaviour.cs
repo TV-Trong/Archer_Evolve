@@ -1,11 +1,11 @@
 using System.Collections;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour, IEntity
+public class EnemyBehaviour : MonoBehaviour, IEntity
 {
    
     [field: SerializeField] public Transform popupDamagePosition { get; set; }
-    [field: SerializeField] public Transform shooterPosition { get; set; }
+    [field: SerializeField] public Transform weaponPosition { get; set; }
 
     private Rigidbody2D myRigidbody;
     private PlayerBehaviour playerBehaviour;
@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour, IEntity
     private int baseHealth;
     private bool isPlayerInAttackRange = false;
 
-    [field: Header("Statistic")]
+    [field: Header("Base Stats Variable")]
     [field: SerializeField] public float moveSpeed { get; set; }
     [field: SerializeField] public int healthPoint { get; set; }
     [field: SerializeField] public float strength { get; set; }
@@ -26,9 +26,9 @@ public class Enemy : MonoBehaviour, IEntity
 
     [SerializeField] private float knockbackValue;
     [SerializeField] private float spawnRadius;
+    [SerializeField] private int expYield;
+    [SerializeField] private int enemyLevel;
     private float extraRadius = 2f;
-
-    Animator animator;
 
     private void Awake()
     {
@@ -38,7 +38,6 @@ public class Enemy : MonoBehaviour, IEntity
         baseStrength = strength;
         baseAttackSpeed = attackSpeed;
         attackTimer = 0;
-        animator = GetComponent<Animator>();
     }
 
     private void Update()

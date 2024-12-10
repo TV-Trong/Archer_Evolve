@@ -38,7 +38,6 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -8688,7 +8687,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ebfcd05d1fada09459e07c0aa2b825b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <shooterPosition>k__BackingField: {fileID: 1793258775}
+  <weaponPosition>k__BackingField: {fileID: 1793258775}
   <popupDamagePosition>k__BackingField: {fileID: 1129343921}
   movingAction: {fileID: 555381290488344010, guid: 2f37f4ee6baaceb48bf10df5c8fc0bb1, type: 3}
   baseInvincibilityFrame: 0.5
@@ -8700,6 +8699,8 @@ MonoBehaviour:
   <healthPoint>k__BackingField: 100
   <strength>k__BackingField: 10
   <attackSpeed>k__BackingField: 0.5
+  expPoint: 0
+  level: 0
 --- !u!95 &397452036
 Animator:
   serializedVersion: 5
@@ -39162,13 +39163,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <popupDamagePosition>k__BackingField: {fileID: 4740035539203480014}
-  <shooterPosition>k__BackingField: {fileID: 6691168096064867605}
+  <weaponPosition>k__BackingField: {fileID: 0}
+  myRigidbody: {fileID: 0}
+  playerBehaviour: {fileID: 0}
+  playerHitbox: {fileID: 0}
+  baseMoveSpeed: 0
+  baseStrength: 0
+  baseAttackSpeed: 0
+  attackTimer: 0
+  baseHealth: 0
+  isPlayerInAttackRange: 0
   <moveSpeed>k__BackingField: 0
   <healthPoint>k__BackingField: 99999
   <strength>k__BackingField: 0
   <attackSpeed>k__BackingField: 1
   knockbackValue: 0
   spawnRadius: 0
+  extraRadius: 2
+  animator: {fileID: 0}
 --- !u!70 &1120470215151920180
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

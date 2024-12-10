@@ -35,7 +35,7 @@ public class Arrow : MonoBehaviour, IProjectile
     {
         if (collision.CompareTag("Enemy"))
         {
-            Enemy enemy = collision.GetComponent<Enemy>();
+            EnemyBehaviour enemy = collision.GetComponent<EnemyBehaviour>();
             enemy.TakeDamge(CalculatedDamage());
             gameObject.SetActive(false);
         }

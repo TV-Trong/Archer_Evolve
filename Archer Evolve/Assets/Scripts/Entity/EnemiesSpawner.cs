@@ -18,7 +18,7 @@ public class EnemiesSpawner : MonoBehaviour
             //int spawnNumber = (int)Random.Range(1, 5);
             yield return new WaitForSeconds(spawnRate);
             GameObject enemyObject = ObjectsPooler.instance.GetPooledObjects(enemyIndex);
-            enemyObject.SetActive(true);
+            if (enemyObject != null) enemyObject.SetActive(true);
         }
     }
 
