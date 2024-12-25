@@ -20,6 +20,6 @@ MonoBehaviour:
   weight: 5
   baseFireRate: 1
   basePullForce: 5
-  baseWeight: 5
+  baseWeight: 10
   weaponSprite: {fileID: 21300000, guid: e23dede51c81d2b4da161acf685f4903, type: 3}
   discription: A beginner's bow. This is where every great archer begin their journey.

@@ -27,7 +27,8 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     [field: SerializeField] public float attackSpeed { get; set; }
     [HideInInspector] public float expPoint;
     [HideInInspector] public int level;
-    public float baseExpToLevelUp = 50;
+    public float baseExpToLevelUp;
+    private float levelUpExp;
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -63,6 +64,7 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
         baseAttackSpeed = attackSpeed;
         attackTimer = attackSpeed;
         invincibilityFrame = baseInvincibilityFrame;
+        levelUpExp = Mathf.Floor(baseExpToLevelUp + level * 50 * (1 + level * .1f));
     }
 
     public Vector2 GetMoveInput()
@@ -141,14 +143,22 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     public void GainExp(float amount)
     {
         expPoint += amount;
-        float levelUpExp = Mathf.Floor(baseExpToLevelUp + level * 30 * (1 + level * .1f));
         if (expPoint >= (levelUpExp))
         {
-            level++;
-            weapon.ActivateWeaponAbility();
-            Debug.Log("LEVEL UP! LEVEL: " + level);
+            LevelUp();
         }
     }
+
+    private void LevelUp()
+    {
+        baseHP += 10;
+        healthPoint = baseHP;
+
+        level++;
+        levelUpExp = Mathf.Floor(baseExpToLevelUp + level * 50 * (1 + level * .1f));
+        Debug.Log("LEVEL UP! LEVEL: " + level);
+    }
+
     public void Die()
     {
         Debug.Log("Womp Womp!");

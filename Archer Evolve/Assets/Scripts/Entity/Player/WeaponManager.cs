@@ -34,9 +34,9 @@ public class WeaponManager : MonoBehaviour
     private void SetupWeaponStats()
     {
         float fireRate = myWeapon.fireRate;
-        float pullPower = myWeapon.pullForce;
+        float pullForce = myWeapon.pullForce;
         float weight = myWeapon.weight;
-        DistributeStats(fireRate, pullPower, weight);
+        DistributeStats(fireRate, pullForce, weight);
     }
 
     public void UpdateWeaponStats(float fireRate = 0f, float pullForce = 0, float weight = 0f)

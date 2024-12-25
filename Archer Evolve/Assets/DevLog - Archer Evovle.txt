@@ -20,16 +20,19 @@
 	- Make infinite map by using tile positioning
 	- Add weapon to the game
 	- Link player - weapon - arrow stat to calculate damage, move speed and attack speed:
-		+ Player / Enemy: 	* HP
+		+ Player / Enemy: 	
+						* HP
 						* Move speed
 						* Strength: affects final damage calculation
 						* Attack Speed
 
-		+ Weapon (Bow/Crossbow):	* Fire rate: affects player attack speed
+		+ Weapon (Bow/Crossbow):	
+								* Fire rate: affects player attack speed
 								* Pull power: affects final damage calculation and arrow velocity
 								* Weight: affects player move speed
 
-		+ Arrow (Projectile): 	* Velocity
+		+ Arrow (Projectile): 	
+							* Velocity
 							* Damage: affects final damage calculation
 							* Lifetime
 06/08/2024
@@ -60,4 +63,4 @@
 	- Add level up system.
 	- Adjust arrow velocity when level up.
 	- Fix Goblin hit box.
-	- Add exp crystal when enemy dies.
+	- Enemy drop exp crystal when dies.

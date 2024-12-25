@@ -8696,13 +8696,13 @@ MonoBehaviour:
   baseHP: 0
   baseStrength: 0
   baseAttackSpeed: 0
-  <moveSpeed>k__BackingField: 150
+  <moveSpeed>k__BackingField: 100
   <healthPoint>k__BackingField: 100
   <strength>k__BackingField: 10
   <attackSpeed>k__BackingField: 0.5
   expPoint: 0
   level: 0
-  baseExpToLevelUp: 10
+  baseExpToLevelUp: 30
 --- !u!95 &397452036
 Animator:
   serializedVersion: 5

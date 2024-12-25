@@ -15,12 +15,12 @@ MonoBehaviour:
   weaponName: Velvesta
   weaponType: Bow
   weaponID: B01
-  fireRate: 1
+  fireRate: 0.8
   pullForce: 5
   weight: 5
   baseFireRate: 0.8
   basePullForce: 5
-  baseWeight: 5
+  baseWeight: 10
   weaponSprite: {fileID: 21300000, guid: 185195d05a905ec459f07e338f76412b, type: 3}
   discription: The first and one of the best creation by Velvesta Valhelm. Refine
     and sturdy, it is said that this bow only get stronger with time.
