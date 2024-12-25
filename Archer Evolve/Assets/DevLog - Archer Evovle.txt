@@ -64,3 +64,5 @@
 	- Adjust arrow velocity when level up.
 	- Fix Goblin hit box.
 	- Enemy drop exp crystal when dies.
+	- Add HP and Exp slider UI
+	- Complete the HP and Exp slider interaction.

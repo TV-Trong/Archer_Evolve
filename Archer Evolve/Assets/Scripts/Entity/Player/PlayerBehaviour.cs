@@ -19,6 +19,7 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     private bool isInvincible;
     private float invincibilityFrame;
     private WeaponManager weapon;
+    private HpAndExpSlider sliders;
 
     [field: Header("Base Stats Variable")]
     [field: SerializeField] public float moveSpeed { get; set; }
@@ -65,6 +66,8 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
         attackTimer = attackSpeed;
         invincibilityFrame = baseInvincibilityFrame;
         levelUpExp = Mathf.Floor(baseExpToLevelUp + level * 50 * (1 + level * .1f));
+        sliders = GetComponentInChildren<HpAndExpSlider>();
+        sliders.InitialSlider(baseHP, healthPoint, levelUpExp, expPoint);
     }
 
     public Vector2 GetMoveInput()
@@ -118,6 +121,7 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
             healthPoint -= (int)strength;
             ShowPopupDamage(strength);
             isInvincible = true;
+            sliders.UpdateHPSlider(healthPoint);
         }
         if (healthPoint <= 0)
         {
@@ -143,19 +147,25 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     public void GainExp(float amount)
     {
         expPoint += amount;
+        sliders.UpdateEXPSlider(expPoint);
         if (expPoint >= (levelUpExp))
         {
-            LevelUp();
+            LevelUp(expPoint - levelUpExp);
         }
     }
 
-    private void LevelUp()
+    private void LevelUp(float excessExp)
     {
         baseHP += 10;
         healthPoint = baseHP;
+        sliders.SetUpSlider(baseHP: baseHP);
+        sliders.UpdateHPSlider(healthPoint);
 
         level++;
+        expPoint = 0 + excessExp;
         levelUpExp = Mathf.Floor(baseExpToLevelUp + level * 50 * (1 + level * .1f));
+        sliders.SetUpSlider(baseEXP: levelUpExp);
+        sliders.UpdateEXPSlider(expPoint);
         Debug.Log("LEVEL UP! LEVEL: " + level);
     }
 
