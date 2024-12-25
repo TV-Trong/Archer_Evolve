@@ -14,6 +14,7 @@ public class Arrow : MonoBehaviour, IProjectile
     private float baseVelocity;
     private float baseLifetime;
     private float baseProjectileDamage;
+    [HideInInspector] public bool isAttackCrit;
 
     private void Awake()
     {
@@ -36,7 +37,8 @@ public class Arrow : MonoBehaviour, IProjectile
         if (collision.CompareTag("Enemy"))
         {
             EnemyBehaviour enemy = collision.GetComponent<EnemyBehaviour>();
-            enemy.TakeDamge(CalculatedDamage());
+            enemy.EnemyTakeDamage(CalculatedDamage(), isAttackCrit);
+            isAttackCrit = false;
             gameObject.SetActive(false);
         }
     }
@@ -52,13 +54,19 @@ public class Arrow : MonoBehaviour, IProjectile
 
     private void WeaponPullPowerToVelocity()
     {
-        float calculatedVelocity = baseVelocity + 3 + pickedWeapon.myWeapon.pullForce * 0.1f;
+        float calculatedVelocity = baseVelocity + 3 + pickedWeapon.myWeapon.pullForce * 0.1f + playerInstance.strength * 0.05f;
         velocity = Mathf.Clamp(calculatedVelocity, 6, 50);
     }
 
     private float CalculatedDamage()
     {
-        float rollDamageRange = Random.Range(0.8f, 1.2f);
+        float rollDamageRange;
+        if (isAttackCrit) 
+        {
+            rollDamageRange = 1.2f;
+            return (playerInstance.strength + projectileDamage) * rollDamageRange * playerInstance.GetCritDamage();
+        }
+        rollDamageRange = Random.Range(0.8f, 1.2f);
         return (playerInstance.strength + projectileDamage) * rollDamageRange;
     }
 

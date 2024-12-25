@@ -67,3 +67,5 @@
 	- Add HP and Exp slider UI
 	- Complete the HP and Exp slider interaction.
 	- Display current level.
+	- Remove interface for player and enemy due to redundancy.
+	- Add critical chance and critical damage calculation for player.

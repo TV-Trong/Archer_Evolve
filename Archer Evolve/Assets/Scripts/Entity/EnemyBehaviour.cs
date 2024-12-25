@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class EnemyBehaviour : MonoBehaviour, IEntity
+public class EnemyBehaviour : MonoBehaviour
 {
    
     [field: SerializeField] public Transform popupDamagePosition { get; set; }
@@ -149,11 +149,10 @@ public class EnemyBehaviour : MonoBehaviour, IEntity
     {
         transform.position = moveInput;
     }
-
-    public void TakeDamge(float strength)
+    public void EnemyTakeDamage(float strength, bool isCrit)
     {
         healthPoint -= (int)strength;
-        ShowPopupDamage(strength);
+        ShowPopupDamage(strength, isCrit);
         if (healthPoint <= 0)
         {
             moveSpeed = 0f;
@@ -161,7 +160,7 @@ public class EnemyBehaviour : MonoBehaviour, IEntity
         }
     }
 
-    public void ShowPopupDamage(float strength)
+    public void ShowPopupDamage(float strength, bool isCrit)
     {
         GameObject popupDamage = ObjectsPooler.instance.GetPooledObjects(1);
         if (popupDamage != null)
@@ -169,7 +168,10 @@ public class EnemyBehaviour : MonoBehaviour, IEntity
             popupDamage.transform.position = popupDamagePosition.position;
             PopupDamage damageText = popupDamage.GetComponent<PopupDamage>();
             damageText.Setup((int)strength);
-            damageText.SetDamageColor(Color.red);
+            if (isCrit) 
+                damageText.SetCriticalDamage();
+            else
+                damageText.SetDamageColor(Color.red);
             popupDamage.SetActive(true);
         }
         else

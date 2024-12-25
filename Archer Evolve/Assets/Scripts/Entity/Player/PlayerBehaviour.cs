@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerBehaviour : MonoBehaviour, IEntity
+public class PlayerBehaviour : MonoBehaviour
 {
     public static PlayerBehaviour instance;
     [field: SerializeField] public Transform weaponPosition { get; set; }
@@ -26,6 +26,10 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     [field: SerializeField] public int healthPoint { get; set; }
     [field: SerializeField] public float strength { get; set; }
     [field: SerializeField] public float attackSpeed { get; set; }
+    [Tooltip("Critical chance calculate in percentage")]
+    [SerializeField] private float critChance;
+    [Tooltip("Final damage *= critical damage")]
+    [SerializeField] private float critDamage;
     [HideInInspector] public float expPoint;
     [HideInInspector] public int level;
     public float baseExpToLevelUp;
@@ -98,6 +102,8 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
         GameObject projectile = ObjectsPooler.instance.GetPooledObjects(0);
         if (projectile != null)
         {
+            Arrow arrow = projectile.GetComponent<Arrow>();
+            arrow.isAttackCrit = CalculateCritChance();
             projectile.transform.position = weaponPosition.position;
             projectile.SetActive(true);
         }
@@ -106,7 +112,15 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
             Debug.LogWarning("Not enought arrow pool!");
         }
     }
-
+    public bool CalculateCritChance()
+    {
+        float randomCrit = Random.Range(0f, 100f);
+        return (randomCrit <= critChance);
+    }
+    public float GetCritDamage()
+    {
+        return critDamage;
+    }
     public Vector2 GetMousePositionOnScreen()
     {
         Vector2 getMousePosition = Input.mousePosition;
