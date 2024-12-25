@@ -28,7 +28,7 @@
 
 		+ Weapon (Bow/Crossbow):	
 								* Fire rate: affects player attack speed
-								* Pull power: affects final damage calculation and arrow velocity
+								* Pull force: affects final damage calculation and arrow velocity
 								* Weight: affects player move speed
 
 		+ Arrow (Projectile): 	
@@ -66,3 +66,4 @@
 	- Enemy drop exp crystal when dies.
 	- Add HP and Exp slider UI
 	- Complete the HP and Exp slider interaction.
+	- Display current level.

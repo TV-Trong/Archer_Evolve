@@ -19,7 +19,7 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     private bool isInvincible;
     private float invincibilityFrame;
     private WeaponManager weapon;
-    private HpAndExpSlider sliders;
+    private HUD_Update uiUpdater;
 
     [field: Header("Base Stats Variable")]
     [field: SerializeField] public float moveSpeed { get; set; }
@@ -66,8 +66,8 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
         attackTimer = attackSpeed;
         invincibilityFrame = baseInvincibilityFrame;
         levelUpExp = Mathf.Floor(baseExpToLevelUp + level * 50 * (1 + level * .1f));
-        sliders = GetComponentInChildren<HpAndExpSlider>();
-        sliders.InitialSlider(baseHP, healthPoint, levelUpExp, expPoint);
+        uiUpdater = GetComponentInChildren<HUD_Update>();
+        uiUpdater.InitialHUD(baseHP, healthPoint, levelUpExp, expPoint, level);
     }
 
     public Vector2 GetMoveInput()
@@ -121,7 +121,7 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
             healthPoint -= (int)strength;
             ShowPopupDamage(strength);
             isInvincible = true;
-            sliders.UpdateHPSlider(healthPoint);
+            uiUpdater.UpdateHPSlider(healthPoint);
         }
         if (healthPoint <= 0)
         {
@@ -147,7 +147,7 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     public void GainExp(float amount)
     {
         expPoint += amount;
-        sliders.UpdateEXPSlider(expPoint);
+        uiUpdater.UpdateEXPSlider(expPoint);
         if (expPoint >= (levelUpExp))
         {
             LevelUp(expPoint - levelUpExp);
@@ -158,14 +158,15 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     {
         baseHP += 10;
         healthPoint = baseHP;
-        sliders.SetUpSlider(baseHP: baseHP);
-        sliders.UpdateHPSlider(healthPoint);
+        uiUpdater.SetUpSlider(baseHP: baseHP);
+        uiUpdater.UpdateHPSlider(healthPoint);
 
         level++;
+        uiUpdater.UpdateLevelText(level);
         expPoint = 0 + excessExp;
         levelUpExp = Mathf.Floor(baseExpToLevelUp + level * 50 * (1 + level * .1f));
-        sliders.SetUpSlider(baseEXP: levelUpExp);
-        sliders.UpdateEXPSlider(expPoint);
+        uiUpdater.SetUpSlider(baseEXP: levelUpExp);
+        uiUpdater.UpdateEXPSlider(expPoint);
         Debug.Log("LEVEL UP! LEVEL: " + level);
     }
 
