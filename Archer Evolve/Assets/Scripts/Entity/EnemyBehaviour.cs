@@ -26,7 +26,7 @@ public class EnemyBehaviour : MonoBehaviour, IEntity
 
     [SerializeField] private float knockbackValue;
     [SerializeField] private float spawnRadius;
-    [SerializeField] private int expYield;
+    [SerializeField] private float baseExpYield;
     [SerializeField] private int enemyLevel;
     private float extraRadius = 2f;
 
@@ -174,6 +174,7 @@ public class EnemyBehaviour : MonoBehaviour, IEntity
 
     public void Destroyed()
     {
+        playerBehaviour.GainExp(baseExpYield);
         gameObject.SetActive(false);
     }
 

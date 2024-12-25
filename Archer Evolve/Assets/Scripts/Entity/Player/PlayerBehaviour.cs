@@ -18,14 +18,16 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     private Vector2 moveInput;
     private bool isInvincible;
     private float invincibilityFrame;
+    private WeaponManager weapon;
 
     [field: Header("Base Stats Variable")]
     [field: SerializeField] public float moveSpeed { get; set; }
     [field: SerializeField] public int healthPoint { get; set; }
     [field: SerializeField] public float strength { get; set; }
     [field: SerializeField] public float attackSpeed { get; set; }
-    [HideInInspector] public int expPoint;
+    [HideInInspector] public float expPoint;
     [HideInInspector] public int level;
+    public float baseExpToLevelUp = 50;
     private void Awake()
     {
         if (instance == null) instance = this;
@@ -54,6 +56,7 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     private void SetupBaseStats()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
+        weapon = GetComponentInChildren<WeaponManager>();
         baseMoveSpeed = moveSpeed;
         baseHP = healthPoint;
         baseStrength = strength;
@@ -116,6 +119,17 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
         damageText.SetDamageColor(Color.blue);
         damageText.Setup((int)strength);
         popupDamage.SetActive(true);
+    }
+    public void GainExp(float amount)
+    {
+        expPoint += amount;
+        float levelUpExp = Mathf.Floor(baseExpToLevelUp + level * 30 * (1 + level * .1f));
+        if (expPoint >= (levelUpExp))
+        {
+            level++;
+            weapon.ActivateWeaponAbility();
+            Debug.Log("LEVEL UP! LEVEL: " + level);
+        }
     }
     public void Destroyed()
     {

@@ -224,11 +224,11 @@ MonoBehaviour:
   <weaponPosition>k__BackingField: {fileID: 2735076805300060144}
   <moveSpeed>k__BackingField: 1
   <healthPoint>k__BackingField: 25
-  <strength>k__BackingField: 10
+  <strength>k__BackingField: 8
   <attackSpeed>k__BackingField: 1
   knockbackValue: 0.2
   spawnRadius: 10
-  expYield: 0
+  baseExpYield: 3
   enemyLevel: 0
 --- !u!1 &2342603912823659561
 GameObject:

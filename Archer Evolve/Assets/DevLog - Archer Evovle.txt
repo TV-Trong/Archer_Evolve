@@ -55,3 +55,8 @@
 10/12/2024
 	- Rename some instance for better understanding
 	- Add public exp and level to player behaviour; add exp yield and level to enemy but it is private
+25/12/2024
+	- Small adjust to name and some lore to bow.
+	- Add level up system.
+	- Adjust arrow velocity when level up.
+	- Fix Goblin hit box.

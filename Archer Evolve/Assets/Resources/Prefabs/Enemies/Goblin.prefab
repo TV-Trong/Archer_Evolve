@@ -122,9 +122,9 @@ CapsuleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.08}
-  m_Size: {x: 0.64, y: 0.46}
-  m_Direction: 1
+  m_Offset: {x: 0.01, y: 0.27}
+  m_Size: {x: 0.36, y: 0.63}
+  m_Direction: 0
 --- !u!50 &4371271667326534082
 Rigidbody2D:
   serializedVersion: 4
@@ -205,7 +205,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.02}
+  m_Offset: {x: 0.02, y: 0.06}
   m_Size: {x: 0.45, y: 0.35}
   m_Direction: 1
 --- !u!114 &5589409573757322559
@@ -228,7 +228,7 @@ MonoBehaviour:
   <attackSpeed>k__BackingField: 0.8
   knockbackValue: 0.4
   spawnRadius: 10
-  expYield: 0
+  baseExpYield: 5
   enemyLevel: 0
 --- !u!1 &7695894269692470466
 GameObject:

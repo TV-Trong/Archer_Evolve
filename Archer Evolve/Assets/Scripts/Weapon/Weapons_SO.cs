@@ -13,6 +13,7 @@ public class Weapons_SO : ScriptableObject
     [SerializeField] private float basePullForce;
     [SerializeField] private float baseWeight;
     public Sprite weaponSprite;
+    [TextArea(3,10)]
     public string discription;
 
     public void SetupWeapon()

@@ -8701,6 +8701,7 @@ MonoBehaviour:
   <attackSpeed>k__BackingField: 0.5
   expPoint: 0
   level: 0
+  baseExpToLevelUp: 10
 --- !u!95 &397452036
 Animator:
   serializedVersion: 5
@@ -39000,7 +39001,7 @@ GameObject:
   - component: {fileID: 1853459588}
   - component: {fileID: 1853459589}
   m_Layer: 0
-  m_Name: Sprite Holder
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -39351,7 +39352,7 @@ MonoBehaviour:
   <attackSpeed>k__BackingField: 1
   knockbackValue: 0
   spawnRadius: 0
-  expYield: 0
+  baseExpYield: 0
   enemyLevel: 0
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

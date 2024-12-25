@@ -20,16 +20,11 @@ public class WeaponManager : MonoBehaviour
         SetupWeaponStats();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            weaponAbility.ActivateWeaponAbility(myWeapon.weaponID, myWeapon.weaponType);
-            Debug.Log(myWeapon.pullForce);
-        }
-    }
-
     #region Methods
+    public void ActivateWeaponAbility()
+    {
+        weaponAbility.ActivateWeaponAbility(myWeapon.weaponID, myWeapon.weaponType);
+    }
     private void SetupWeaponSprite()
     {
         SpriteRenderer weaponSprite = GetComponent<SpriteRenderer>();
