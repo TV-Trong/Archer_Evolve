@@ -69,3 +69,5 @@
 	- Display current level.
 	- Remove interface for player and enemy due to redundancy.
 	- Add critical chance and critical damage calculation for player.
+	- Make basic level up attribute (increase some player's base stats when level up) (not complete).
+	- Read attribute from json file.

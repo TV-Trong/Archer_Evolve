@@ -1,0 +1,23 @@
+[
+	{
+		"name" : "Strong Hand",
+		"description" : "Increase Strength by small amount.",
+		"type" : "Strength",
+		"value" : 5,
+		"rarity" : 1
+	},
+	{
+		"name" : "Muscle Up",
+		"description" : "Increase Strength by moderate amount.",
+		"type" : "Strength",
+		"value" : 10,
+		"rarity" : 2
+	},
+	{
+		"name" : "Bulk Up",
+		"description" : "Increase Strength by great amount.",
+		"type" : "Strength",
+		"value" : 15,
+		"rarity" : 3
+	}
+]
