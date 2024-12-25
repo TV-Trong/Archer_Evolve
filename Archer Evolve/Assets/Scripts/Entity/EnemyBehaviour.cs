@@ -157,25 +157,42 @@ public class EnemyBehaviour : MonoBehaviour, IEntity
         if (healthPoint <= 0)
         {
             moveSpeed = 0f;
-            Destroyed();
+            Die();
         }
     }
 
     public void ShowPopupDamage(float strength)
     {
         GameObject popupDamage = ObjectsPooler.instance.GetPooledObjects(1);
-        popupDamage.transform.position = popupDamagePosition.position;
-        PopupDamage damageText = popupDamage.GetComponent<PopupDamage>();
-        damageText.Setup((int)strength);
-        damageText.SetDamageColor(Color.red);
-
-        popupDamage.SetActive(true);
+        if (popupDamage != null)
+        {
+            popupDamage.transform.position = popupDamagePosition.position;
+            PopupDamage damageText = popupDamage.GetComponent<PopupDamage>();
+            damageText.Setup((int)strength);
+            damageText.SetDamageColor(Color.red);
+            popupDamage.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("Not enought damage popup text!");
+        }
     }
 
-    public void Destroyed()
+    public void Die()
     {
-        playerBehaviour.GainExp(baseExpYield);
-        gameObject.SetActive(false);
+        GameObject crystal = ObjectsPooler.instance.GetPooledObjects(4);
+        if (crystal != null)
+        {
+            crystal.transform.position = gameObject.transform.position;
+            ExpCrystal expCrystal = crystal.GetComponent<ExpCrystal>();
+            expCrystal.StoreExp(baseExpYield);
+            crystal.SetActive(true);
+            gameObject.SetActive(false);
+        }
+        else
+        {
+            Debug.LogWarning("Not enought exp crystal pool!");
+        }
     }
 
     public void ResetVelocity()

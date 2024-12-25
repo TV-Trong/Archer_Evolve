@@ -15,10 +15,16 @@ public class EnemiesSpawner : MonoBehaviour
     {
         while (true)
         {
-            //int spawnNumber = (int)Random.Range(1, 5);
             yield return new WaitForSeconds(spawnRate);
             GameObject enemyObject = ObjectsPooler.instance.GetPooledObjects(enemyIndex);
-            if (enemyObject != null) enemyObject.SetActive(true);
+            if (enemyObject != null )
+            {
+                if (enemyObject != null) enemyObject.SetActive(true);
+            }
+            else
+            {
+                Debug.LogWarning("Not enought enemy pool!");
+            }
         }
     }
 

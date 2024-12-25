@@ -13,5 +13,5 @@ public interface IEntity
     void Attack();
     void TakeDamge(float strength);
     void ShowPopupDamage(float strength);
-    void Destroyed();
+    void Die();
 }

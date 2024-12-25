@@ -91,8 +91,15 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
     public void Attack()
     {
         GameObject projectile = ObjectsPooler.instance.GetPooledObjects(0);
-        projectile.transform.position = weaponPosition.position;
-        projectile.SetActive(true);
+        if (projectile != null)
+        {
+            projectile.transform.position = weaponPosition.position;
+            projectile.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("Not enought arrow pool!");
+        }
     }
 
     public Vector2 GetMousePositionOnScreen()
@@ -110,15 +117,26 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
             ShowPopupDamage(strength);
             isInvincible = true;
         }
+        if (healthPoint <= 0)
+        {
+            Die();
+        }
     }
     public void ShowPopupDamage(float strength)
     {
         GameObject popupDamage = ObjectsPooler.instance.GetPooledObjects(1);
-        popupDamage.transform.position = popupDamagePosition.position;
-        PopupDamage damageText = popupDamage.GetComponent<PopupDamage>();
-        damageText.SetDamageColor(Color.blue);
-        damageText.Setup((int)strength);
-        popupDamage.SetActive(true);
+        if (popupDamage != null)
+        {   
+            popupDamage.transform.position = popupDamagePosition.position;
+            PopupDamage damageText = popupDamage.GetComponent<PopupDamage>();
+            damageText.SetDamageColor(Color.blue);
+            damageText.Setup((int)strength);
+            popupDamage.SetActive(true);
+        }
+        else
+        {
+            Debug.LogWarning("Not enought damage popup text!");
+        }
     }
     public void GainExp(float amount)
     {
@@ -131,7 +149,7 @@ public class PlayerBehaviour : MonoBehaviour, IEntity
             Debug.Log("LEVEL UP! LEVEL: " + level);
         }
     }
-    public void Destroyed()
+    public void Die()
     {
         Debug.Log("Womp Womp!");
     }

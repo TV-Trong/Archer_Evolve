@@ -60,3 +60,4 @@
 	- Add level up system.
 	- Adjust arrow velocity when level up.
 	- Fix Goblin hit box.
+	- Add exp crystal when enemy dies.

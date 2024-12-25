@@ -37,6 +37,8 @@ public class ObjectsPooler : MonoBehaviour
     // Index = 0 : player projectile
     // Index = 1 : damage text
     // Index = 2 : Green Slime
+    // Index = 3 : Goblin
+    // Index = 4 : Exp crystal small
 
 }
 
