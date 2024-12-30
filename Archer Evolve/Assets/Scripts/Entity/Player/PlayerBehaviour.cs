@@ -23,14 +23,14 @@ public class PlayerBehaviour : MonoBehaviour
     private LevelUp levelUpScript;
 
     [field: Header("Base Stats Variable")]
-    [field: SerializeField] public float moveSpeed { get; set; }
-    [field: SerializeField] public int healthPoint { get; set; }
-    [field: SerializeField] public float strength { get; set; }
-    [field: SerializeField] public float attackSpeed { get; set; }
+    public float moveSpeed;
+    public int healthPoint;
+    public float strength;
+    public float attackSpeed;
     [Tooltip("Critical chance calculate in percentage")]
-    [SerializeField] private float critChance;
+    public float critChance;
     [Tooltip("Final damage *= critical damage")]
-    [SerializeField] private float critDamage;
+    public float critDamage;
     [HideInInspector] public float expPoint;
     [HideInInspector] public int level;
     public float baseExpToLevelUp;
@@ -118,10 +118,6 @@ public class PlayerBehaviour : MonoBehaviour
     {
         float randomCrit = Random.Range(0f, 100f);
         return (randomCrit <= critChance);
-    }
-    public float GetCritDamage()
-    {
-        return critDamage;
     }
     public Vector2 GetMousePositionOnScreen()
     {

@@ -75,4 +75,5 @@
 	- Add attribute canvas with basic layout.
 30/12/2024
 	- Connect attribute canvas popup with level up.
-	- Add Statistic canvas to show player stats.
+	- Add Player Info canvas to show player stats.
+	- Set up Player Info canvas when level up.

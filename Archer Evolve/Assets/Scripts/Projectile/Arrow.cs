@@ -64,7 +64,7 @@ public class Arrow : MonoBehaviour, IProjectile
         if (isAttackCrit) 
         {
             rollDamageRange = 1.2f;
-            return (playerInstance.strength + projectileDamage) * rollDamageRange * playerInstance.GetCritDamage();
+            return (playerInstance.strength + projectileDamage) * rollDamageRange * playerInstance.critDamage;
         }
         rollDamageRange = Random.Range(0.8f, 1.2f);
         return (playerInstance.strength + projectileDamage) * rollDamageRange;
