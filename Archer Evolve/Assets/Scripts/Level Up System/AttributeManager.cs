@@ -11,9 +11,8 @@ public class AttributeManager : MonoBehaviour
     }
     private void LoadAttribute()
     {
-        string path = @"Assets/Scripts/Skill/Attributes.txt";
+        string path = @"Assets/Scripts/Level Up System/Attributes.txt";
         string json = File.ReadAllText(path);
-        Debug.Log(json);
         attributes = JsonUtility.FromJson<AttributeWrapper>($"{{\"attributes\":{json}}}").attributes;
     }
 }

@@ -73,4 +73,6 @@
 	- Read attribute from json file.
 26/12/2024
 	- Add attribute canvas with basic layout.
-
+30/12/2024
+	- Connect attribute canvas popup with level up.
+	- Add Statistic canvas to show player stats.

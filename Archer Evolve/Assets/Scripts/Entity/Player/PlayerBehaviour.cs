@@ -20,6 +20,7 @@ public class PlayerBehaviour : MonoBehaviour
     private float invincibilityFrame;
     private WeaponManager weapon;
     private HUD_Update uiUpdater;
+    private LevelUp levelUpScript;
 
     [field: Header("Base Stats Variable")]
     [field: SerializeField] public float moveSpeed { get; set; }
@@ -36,8 +37,7 @@ public class PlayerBehaviour : MonoBehaviour
     private float levelUpExp;
     private void Awake()
     {
-        if (instance == null) instance = this;
-        SetupBaseStats();
+        SetupVariables();
     }
 
     private void Update()
@@ -59,8 +59,9 @@ public class PlayerBehaviour : MonoBehaviour
     }
 
     #region Methods
-    private void SetupBaseStats()
+    private void SetupVariables()
     {
+        if (instance == null) instance = this;
         myRigidbody = GetComponent<Rigidbody2D>();
         weapon = GetComponentInChildren<WeaponManager>();
         baseMoveSpeed = moveSpeed;
@@ -72,6 +73,7 @@ public class PlayerBehaviour : MonoBehaviour
         levelUpExp = Mathf.Floor(baseExpToLevelUp + level * 50 * (1 + level * .1f));
         uiUpdater = GetComponentInChildren<HUD_Update>();
         uiUpdater.InitialHUD(baseHP, healthPoint, levelUpExp, expPoint, level);
+        levelUpScript = FindObjectOfType<LevelUp>();
     }
 
     public Vector2 GetMoveInput()
@@ -181,6 +183,7 @@ public class PlayerBehaviour : MonoBehaviour
         levelUpExp = Mathf.Floor(baseExpToLevelUp + level * 50 * (1 + level * .1f));
         uiUpdater.SetUpSlider(baseEXP: levelUpExp);
         uiUpdater.UpdateEXPSlider(expPoint);
+        levelUpScript.OpenAttributeCanvas();
         Debug.Log("LEVEL UP! LEVEL: " + level);
     }
 

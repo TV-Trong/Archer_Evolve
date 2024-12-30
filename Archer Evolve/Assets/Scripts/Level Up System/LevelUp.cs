@@ -3,13 +3,16 @@ using UnityEngine;
 public class LevelUp : MonoBehaviour
 {
     private AttributeManager attributeManager;
-    private PlayerBehaviour playerInstance;
+    [SerializeField] private GameObject attributeCanvas;
 
     private void Awake()
     {
         attributeManager = FindObjectOfType<AttributeManager>();
-        playerInstance = PlayerBehaviour.instance;
     }
 
-
+    public void OpenAttributeCanvas()
+    {
+        attributeCanvas.SetActive(true);
+        GameManager.instance.PauseGame();
+    }
 }
