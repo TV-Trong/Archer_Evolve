@@ -1,5 +1,6 @@
 [
 	{
+		"id" : 0,
 		"name" : "Strong Hand",
 		"description" : "Increase Strength by small amount.",
 		"type" : "Strength",
@@ -7,6 +8,7 @@
 		"rarity" : 1
 	},
 	{
+		"id" : 1,
 		"name" : "Muscle Up",
 		"description" : "Increase Strength by moderate amount.",
 		"type" : "Strength",
@@ -14,6 +16,7 @@
 		"rarity" : 2
 	},
 	{
+		"id" : 2,
 		"name" : "Bulk Up",
 		"description" : "Increase Strength by great amount.",
 		"type" : "Strength",

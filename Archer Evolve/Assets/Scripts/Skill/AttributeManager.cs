@@ -26,6 +26,7 @@ public class AttributeWrapper
 [System.Serializable]
 public class LevelUpAttribute
 {
+    public int id;
     public string name;
     public string description;
     public AttributeType type;

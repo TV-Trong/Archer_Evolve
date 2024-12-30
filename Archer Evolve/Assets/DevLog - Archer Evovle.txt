@@ -71,3 +71,6 @@
 	- Add critical chance and critical damage calculation for player.
 	- Make basic level up attribute (increase some player's base stats when level up) (not complete).
 	- Read attribute from json file.
+26/12/2024
+	- Add attribute canvas with basic layout.
+
