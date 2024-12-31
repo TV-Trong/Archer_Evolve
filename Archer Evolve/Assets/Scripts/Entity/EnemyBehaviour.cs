@@ -8,7 +8,7 @@ public class EnemyBehaviour : MonoBehaviour
     [field: SerializeField] public Transform weaponPosition { get; set; }
 
     private Rigidbody2D myRigidbody;
-    private PlayerBehaviour playerBehaviour;
+    private PlayerBehaviour playerInstance;
     private CircleCollider2D playerHitbox;
     private Coroutine myCoroutine;
     private float baseMoveSpeed;
@@ -32,6 +32,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void Awake()
     {
+        playerInstance = PlayerBehaviour.instance;
         myRigidbody = GetComponent<Rigidbody2D>();
         baseMoveSpeed = moveSpeed;
         baseHealth = healthPoint;
@@ -53,7 +54,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnEnable()
     {
-        playerBehaviour = PlayerBehaviour.instance;
         playerHitbox = PlayerBehaviour.instance.GetComponentInChildren<CircleCollider2D>();
         RepositionEnemyWhenEnable();
         healthPoint = baseHealth;
@@ -89,15 +89,15 @@ public class EnemyBehaviour : MonoBehaviour
         float randomAngle = Random.Range(0f, 2 * Mathf.PI);
         float randomDistance = Random.Range(spawnRadius, spawnRadius + extraRadius);
         transform.position = new Vector3(
-            playerBehaviour.transform.position.x + Mathf.Cos(randomAngle) * randomDistance,
-            playerBehaviour.transform.position.y + Mathf.Sin(randomAngle) * randomDistance,
+            playerInstance.transform.position.x + Mathf.Cos(randomAngle) * randomDistance,
+            playerInstance.transform.position.y + Mathf.Sin(randomAngle) * randomDistance,
             0f);
     }
 
     public void FlipSprite()
     {
-        if (playerBehaviour != null)
-            if (playerBehaviour.transform.position.x > transform.position.x) transform.localScale = new Vector3(-1, 1, 1);
+        if (playerInstance != null)
+            if (playerInstance.transform.position.x > transform.position.x) transform.localScale = new Vector3(-1, 1, 1);
             else transform.localScale = new Vector3(1, 1, 1);
     }
     private void KnockbackCalculation()
@@ -114,7 +114,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void SetupKnockback()
     {
-        Vector2 playerPosition = playerBehaviour.transform.position;
+        Vector2 playerPosition = playerInstance.transform.position;
         Vector2 myPosition = transform.position;
         Vector2 knockbackDirection = (myPosition - playerPosition).normalized;
         myRigidbody.AddForce(knockbackDirection * 2f, ForceMode2D.Impulse);
@@ -135,14 +135,14 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void FollowPlayer()
     {
-        Vector2 playerPosition = playerBehaviour.transform.position;
+        Vector2 playerPosition = playerInstance.transform.position;
         Vector2 moveInput = Vector2.MoveTowards(transform.position, playerPosition, moveSpeed * Time.deltaTime);
         Moving(moveInput);
     }
 
     public void Attack()
     {
-        playerBehaviour.TakeDamge(strength);
+        playerInstance.TakeDamge(strength);
     }
 
     public void Moving(Vector2 moveInput)

@@ -1,26 +1,107 @@
 [
 	{
-		"id" : 0,
 		"name" : "Strong Hand",
 		"description" : "Increase Strength by small amount.",
-		"type" : "Strength",
+		"type" : 0,
 		"value" : 5,
 		"rarity" : 1
 	},
 	{
-		"id" : 1,
-		"name" : "Muscle Up",
+		"name" : "Muscular",
 		"description" : "Increase Strength by moderate amount.",
-		"type" : "Strength",
+		"type" : 0,
 		"value" : 10,
 		"rarity" : 2
 	},
 	{
-		"id" : 2,
 		"name" : "Bulk Up",
 		"description" : "Increase Strength by great amount.",
-		"type" : "Strength",
+		"type" : 0,
 		"value" : 15,
+		"rarity" : 3
+	},
+	{
+		"name" : "Quick Feet",
+		"description" : "Increase Speed by small amount.",
+		"type" : 1,
+		"value" : 5,
+		"rarity" : 1
+	},
+	{
+		"name" : "Runner",
+		"description" : "Increase Speed by moderate amount.",
+		"type" : 1,
+		"value" : 10,
+		"rarity" : 2
+	},
+	{
+		"name" : "Sprinter",
+		"description" : "Increase Speed by great amount.",
+		"type" : 1,
+		"value" : 15,
+		"rarity" : 3
+	},
+	{
+		"name" : "Quick Hand",
+		"description" : "Increase Fire Rate by small amount.",
+		"type" : 2,
+		"value" : 0.1,
+		"rarity" : 1
+	},
+	{
+		"name" : "Flexible",
+		"description" : "Increase Fire Rate by moderate amount.",
+		"type" : 2,
+		"value" : 0.2,
+		"rarity" : 2
+	},
+	{
+		"name" : "Archer",
+		"description" : "Increase Fire Rate by great amount.",
+		"type" : 2,
+		"value" : 0.3,
+		"rarity" : 3
+	},
+	{
+		"name" : "Focus",
+		"description" : "Increase Critical Chance by small amount.",
+		"type" : 3,
+		"value" : 5,
+		"rarity" : 1
+	},
+	{
+		"name" : "Aim",
+		"description" : "Increase Critical Chance by moderate amount.",
+		"type" : 3,
+		"value" : 10,
+		"rarity" : 2
+	},
+	{
+		"name" : "Lock On",
+		"description" : "Increase Critical Chance by great amount.",
+		"type" : 3,
+		"value" : 15,
+		"rarity" : 3
+	},
+	{
+		"name" : "Power Shot",
+		"description" : "Increase Critical Damage by small amount.",
+		"type" : 4,
+		"value" : 0.1,
+		"rarity" : 1
+	},
+	{
+		"name" : "Deadly Shot",
+		"description" : "Increase Critical Damage by moderate amount.",
+		"type" : 4,
+		"value" : 0.2,
+		"rarity" : 2
+	},
+	{
+		"name" : "Head Shot",
+		"description" : "Increase Critical Damage by great amount.",
+		"type" : 4,
+		"value" : 0.3,
 		"rarity" : 3
 	}
 ]

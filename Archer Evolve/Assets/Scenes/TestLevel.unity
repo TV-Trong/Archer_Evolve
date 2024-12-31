@@ -460,6 +460,7 @@ GameObject:
   - component: {fileID: 98010291}
   - component: {fileID: 98010290}
   - component: {fileID: 98010289}
+  - component: {fileID: 98010292}
   m_Layer: 5
   m_Name: Attribute Button (4)
   m_TagString: Untagged
@@ -570,6 +571,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 98010287}
   m_CullTransparentMesh: 1
+--- !u!114 &98010292
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 98010287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9febfcddaa83364dbcfbe9ed19f601a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attributeCanvas: {fileID: 1546806494}
+  playerInfoCanvas: {fileID: 1936124915}
 --- !u!1 &130556556
 GameObject:
   m_ObjectHideFlags: 0
@@ -9660,6 +9675,7 @@ GameObject:
   - component: {fileID: 352312846}
   - component: {fileID: 352312845}
   - component: {fileID: 352312844}
+  - component: {fileID: 352312847}
   m_Layer: 5
   m_Name: Attribute Button (1)
   m_TagString: Untagged
@@ -9770,6 +9786,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 352312842}
   m_CullTransparentMesh: 1
+--- !u!114 &352312847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 352312842}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9febfcddaa83364dbcfbe9ed19f601a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attributeCanvas: {fileID: 1546806494}
+  playerInfoCanvas: {fileID: 1936124915}
 --- !u!1 &397452029
 GameObject:
   m_ObjectHideFlags: 0
@@ -9890,16 +9920,12 @@ MonoBehaviour:
   <popupDamagePosition>k__BackingField: {fileID: 1129343921}
   movingAction: {fileID: 555381290488344010, guid: 2f37f4ee6baaceb48bf10df5c8fc0bb1, type: 3}
   baseInvincibilityFrame: 0.5
-  baseMoveSpeed: 0
-  baseHP: 0
-  baseStrength: 0
-  baseAttackSpeed: 0
-  moveSpeed: 100
-  healthPoint: 100
-  strength: 50
-  attackSpeed: 0.5
-  critChance: 50
-  critDamage: 1.5
+  <moveSpeed>k__BackingField: 100
+  <healthPoint>k__BackingField: 100
+  <strength>k__BackingField: 20
+  <attackSpeed>k__BackingField: 1
+  <critChance>k__BackingField: 10
+  <critDamage>k__BackingField: 1.5
   expPoint: 0
   level: 0
   baseExpToLevelUp: 30
@@ -23339,6 +23365,7 @@ GameObject:
   - component: {fileID: 676793022}
   - component: {fileID: 676793021}
   - component: {fileID: 676793020}
+  - component: {fileID: 676793023}
   m_Layer: 5
   m_Name: Attribute Button (2)
   m_TagString: Untagged
@@ -23449,6 +23476,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 676793018}
   m_CullTransparentMesh: 1
+--- !u!114 &676793023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 676793018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9febfcddaa83364dbcfbe9ed19f601a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attributeCanvas: {fileID: 1546806494}
+  playerInfoCanvas: {fileID: 1936124915}
 --- !u!1 &692590834
 GameObject:
   m_ObjectHideFlags: 0
@@ -38168,6 +38209,7 @@ GameObject:
   - component: {fileID: 1463623573}
   - component: {fileID: 1463623572}
   - component: {fileID: 1463623571}
+  - component: {fileID: 1463623574}
   m_Layer: 5
   m_Name: Attribute Button (3)
   m_TagString: Untagged
@@ -38278,6 +38320,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1463623569}
   m_CullTransparentMesh: 1
+--- !u!114 &1463623574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1463623569}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a9febfcddaa83364dbcfbe9ed19f601a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attributeCanvas: {fileID: 1546806494}
+  playerInfoCanvas: {fileID: 1936124915}
 --- !u!1 &1532138651
 GameObject:
   m_ObjectHideFlags: 0
@@ -43371,7 +43427,7 @@ GameObject:
   - component: {fileID: 1770133370}
   - component: {fileID: 1770133371}
   m_Layer: 5
-  m_Name: Attack Speed
+  m_Name: Fire Rate
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44188,7 +44244,7 @@ GameObject:
   - component: {fileID: 1961369123}
   - component: {fileID: 1961369124}
   m_Layer: 5
-  m_Name: Movement Speed
+  m_Name: Speed
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -21,10 +21,36 @@ public class PopupAttribute : MonoBehaviour
             if (choseAttributeButtons[i].gameObject.activeInHierarchy)
             {
                 int randomAttribute = Random.Range(0, attributeManager.attributes.Count);
-                attributeNames[i].text = attributeManager.attributes[randomAttribute].name;
-                attributeDescriptions[i].text = attributeManager.attributes[randomAttribute].description;
+                LevelUpAttribute chosenAttribute = attributeManager.attributes[randomAttribute];
+                attributeNames[i].text = chosenAttribute.name;
+                attributeDescriptions[i].text = chosenAttribute.description;
+                choseAttributeButtons[i].onClick.AddListener(() => ActivateAttribute(chosenAttribute.type.ToString(), chosenAttribute.value));
             }
         }
-        
+    }
+
+    public void ActivateAttribute(string type, float value)
+    {
+        switch (type)
+        {
+            case "Strength":
+                PlayerBehaviour.instance.strength += value;
+                break;
+            case "Speed":
+                PlayerBehaviour.instance.moveSpeed += value;
+                break;
+            case "FireRate":
+                PlayerBehaviour.instance.attackSpeed -= value;
+                break;
+            case "CriticalChance":
+                PlayerBehaviour.instance.critChance += value;
+                break;
+            case "CriticalDamage":
+                PlayerBehaviour.instance.critDamage += value;
+                break;
+            default:
+                Debug.LogWarning("Attribute Type not found!");
+                break;
+        }
     }
 }

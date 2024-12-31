@@ -25,7 +25,6 @@ public class AttributeWrapper
 [System.Serializable]
 public class LevelUpAttribute
 {
-    public int id;
     public string name;
     public string description;
     public AttributeType type;
@@ -36,11 +35,11 @@ public class LevelUpAttribute
 public enum AttributeType
 {
     Strength,
-    MovementSpeed,
-    AttackSpeed,
+    Speed,
+    FireRate,
+    CriticalChance,
+    CriticalDamage,
     Health,
     Defense,
-    Regeneration,
-    CriticalChance,
-    CriticalDamage
+    Regeneration
 }

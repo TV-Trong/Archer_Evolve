@@ -9,10 +9,10 @@ public class PlayerBehaviour : MonoBehaviour
 
     [SerializeField] private InputActionReference movingAction;
     [SerializeField] private float baseInvincibilityFrame = 0.5f;
-    [HideInInspector] public float baseMoveSpeed;
-    [HideInInspector] public int baseHP;
-    [HideInInspector] public float baseStrength;
-    [HideInInspector] public float baseAttackSpeed;
+    public float baseMoveSpeed { get; set; }
+    public int baseHP { get; set; }
+    public float baseStrength { get; set; }
+    public float baseAttackSpeed { get; set; }
     private Rigidbody2D myRigidbody;
     private float attackTimer;
     private Vector2 moveInput;
@@ -23,14 +23,14 @@ public class PlayerBehaviour : MonoBehaviour
     private LevelUp levelUpScript;
 
     [field: Header("Base Stats Variable")]
-    public float moveSpeed;
-    public int healthPoint;
-    public float strength;
-    public float attackSpeed;
+    [field:SerializeField] public float moveSpeed { get; set; }
+    [field: SerializeField] public int healthPoint { get; set; }
+    [field: SerializeField] public float strength { get; set; }
+    [field: SerializeField] public float attackSpeed { get; set; }
     [Tooltip("Critical chance calculate in percentage")]
-    public float critChance;
+    [field: SerializeField] public float critChance { get; set; }
     [Tooltip("Final damage *= critical damage")]
-    public float critDamage;
+    [field: SerializeField] public float critDamage { get; set; }
     [HideInInspector] public float expPoint;
     [HideInInspector] public int level;
     public float baseExpToLevelUp;
