@@ -79,3 +79,5 @@
 	- Set up Player Info canvas when level up.
 31/12/2024
 	- Attribute can now increase player stats.
+01/01/2025
+	- Add ability canvas (ability not included).

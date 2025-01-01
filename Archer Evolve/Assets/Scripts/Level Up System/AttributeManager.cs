@@ -38,8 +38,5 @@ public enum AttributeType
     Speed,
     FireRate,
     CriticalChance,
-    CriticalDamage,
-    Health,
-    Defense,
-    Regeneration
+    CriticalDamage
 }

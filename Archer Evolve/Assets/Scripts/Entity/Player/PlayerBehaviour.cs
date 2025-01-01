@@ -180,7 +180,6 @@ public class PlayerBehaviour : MonoBehaviour
         uiUpdater.SetUpSlider(baseEXP: levelUpExp);
         uiUpdater.UpdateEXPSlider(expPoint);
         levelUpScript.OpenAttributeCanvas();
-        Debug.Log("LEVEL UP! LEVEL: " + level);
     }
 
     public void Die()

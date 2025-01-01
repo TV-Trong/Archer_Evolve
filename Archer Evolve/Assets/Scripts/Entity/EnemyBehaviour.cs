@@ -33,6 +33,7 @@ public class EnemyBehaviour : MonoBehaviour
     private void Awake()
     {
         playerInstance = PlayerBehaviour.instance;
+        playerHitbox = GameObject.FindWithTag("PlayerHitbox").GetComponent<CircleCollider2D>();
         myRigidbody = GetComponent<Rigidbody2D>();
         baseMoveSpeed = moveSpeed;
         baseHealth = healthPoint;
@@ -54,7 +55,6 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnEnable()
     {
-        playerHitbox = PlayerBehaviour.instance.GetComponentInChildren<CircleCollider2D>();
         RepositionEnemyWhenEnable();
         healthPoint = baseHealth;
         moveSpeed = baseMoveSpeed;
